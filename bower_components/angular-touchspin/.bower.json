@@ -1,0 +1,45 @@
+{
+  "name": "angular-touchspin",
+  "version": "1.4.4",
+  "authors": [
+    "Niko Kovacic <niko.kovacic2@gmail.com>"
+  ],
+  "main": "dist/angular-touchspin.js",
+  "description": "A input spinner component for Bootstrap 3 and angular",
+  "keywords": [
+    "angular",
+    "bootstrap",
+    "angular-touchspin",
+    "touchspin",
+    "angularjs",
+    "angular touchspin"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    ".gitignore",
+    ".npmignore",
+    ".travis.yml",
+    "karma.conf.js",
+    "tsconfig.json",
+    "tslint.json",
+    "typings.json",
+    "typings",
+    "dev",
+    "src",
+    "other"
+  ],
+  "dependencies": {
+    "angular": "^1.4.x"
+  },
+  "homepage": "https://github.com/nkovacic/angular-touchspin",
+  "_release": "1.4.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.4.4",
+    "commit": "477c92b9ff3be12a95c4a25eb61c0086ca7bff2c"
+  },
+  "_source": "https://github.com/nkovacic/angular-touchspin.git",
+  "_target": "^1.4.0",
+  "_originalSource": "angular-touchspin"
+}

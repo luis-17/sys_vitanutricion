@@ -1,0 +1,25 @@
+{
+  "name": "intro.js",
+  "description": "A better way for new feature introduction and step-by-step users guide for your website and project.",
+  "keywords": [
+    "demo",
+    "intro",
+    "introduction"
+  ],
+  "homepage": "http://introjs.com",
+  "author": "Afshin Mehrabani",
+  "main": [
+    "intro.js",
+    "introjs.css"
+  ],
+  "version": "2.3.0",
+  "_release": "2.3.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.3.0",
+    "commit": "7e59e95841d229e1ba25003fb0b803861ebeaca2"
+  },
+  "_source": "https://github.com/usablica/intro.js.git",
+  "_target": "~2.3.0",
+  "_originalSource": "intro.js"
+}

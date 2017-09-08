@@ -1,0 +1,28 @@
+<form class="form-horizontal" role="form">
+	<div class="tile col-sm-12">
+    	<h4 class="text-info f-16">Planes Alimentarios</h4>
+    	<table class="table table-hover">
+            <thead style="background: #E8EEF4;">
+	            <tr>
+	              <th style="vertical-align: middle; width: 80px;">ID</th>
+	              <th style="vertical-align: middle; width: 100px;">FECHA</th>
+	              <th style="vertical-align: middle;">INDICACIONES GENERALES</th>
+	              <th style="vertical-align: middle;text-align: center; width: 80px;">VER INFORME</th>
+
+	            </tr>
+            </thead>
+            <tbody>
+	            <tr ng-repeat="item in pac.listaPlanes">
+	            	<td>{{item.idatencion}}</td>
+	            	<td>{{item.fecha_atencion}}</td>
+	            	<td>{{item.indicaciones}}</td>
+	            	<td style="text-align: center;">
+	            		<a href="" ng-click="pac.btnImprimirPlan(item)" ><img src="assets/images/dinamic/pdf.png" style="width: 50%"></a>
+	            	</td>
+	            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</form>

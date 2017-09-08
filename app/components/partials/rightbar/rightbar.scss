@@ -1,0 +1,222 @@
+minotaur-rightbar {
+  width: 280px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 120;
+  background-color: $rightbar-bg;
+  transition: all 400ms cubic-bezier(0.05,0.74,0.27,0.99);
+  overflow: auto;
+  right: -280px;
+
+  &.rightbar-expanded {
+    right: 0;
+  }
+
+  #close-rightbar {
+    position: absolute;
+    z-index: 99;
+    top: -1px;
+    right: 10px;
+    font-size: 12px;
+    color: #536574;
+    padding: 10px 8px;
+
+    &:hover {
+      color: #7d90a0;
+    }
+
+    &:before {
+      content: "\2716";
+    }
+  }
+
+  .nav {
+    &.nav-tabs {
+      padding: 0 40px;
+      z-index: 2;
+      border-bottom: 0;
+      background-color: darken($rightbar-bg, 5%);
+
+      >li {
+        margin-bottom: 0;
+
+        >a {
+          font-family: $font-raleway;
+          text-transform: uppercase;
+          font-weight: $font-weight-bold;
+          font-size: 11px;
+          border-radius: 0;
+          border: 0!important;
+          color: #536574;
+          cursor: pointer;
+          margin: 0;
+          padding: 10px 8px;
+
+          &:hover {
+            color: #7d90a0;
+            background-color: darken($rightbar-bg, 5%);
+          }
+        }
+        &.active>a {
+          color: white;
+          background-color: darken($rightbar-bg, 5%);
+          &:hover
+          &:focus {
+            color: white;
+            background-color: darken($rightbar-bg, 5%);
+          }
+        }
+      }
+    }
+  }
+
+  .tab-content {
+    left: 0;
+    background: $rightbar-bg;
+    padding: 5px 15px;
+
+    .tab-pane {
+      padding: 0;
+
+      >h6 {
+        color: $font-color-light;
+        font-family: $font-raleway;
+        text-transform: uppercase;
+        border-bottom: 1px dotted ($transparent-white-15);
+        padding-bottom: 10px;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        >li {
+
+          &:last-child {
+            margin-bottom: 15px;
+          }
+
+          .media {
+            position: relative;
+            padding: 10px 0 0;
+
+            .unread {
+              position: absolute;
+              top: 0;
+              left: 20px;
+            }
+
+            .media-body {
+              padding-top: 2px;
+              padding-bottom: 6px;
+              position: relative;
+
+              .media-heading {
+                font-family: $font-roboto;
+                font-weight: $font-weight-light;
+                color: $font-color-lighter;
+                margin: 0 0 3px;
+                display: block;
+              }
+              small {
+                font-size: 11px;
+                color: $transparent-white-3;
+                display: inline-block;
+                width: 130px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+
+                i {
+                  font-size: 14px;
+                }
+              }
+              .status {
+                position: absolute;
+                right: 0;
+                top: 18px;
+              }
+            }
+          }
+
+          &.online {
+            .status {
+              border-color: $greensea;
+            }
+          }
+          &.busy {
+            .status {
+              border-color: $orange;
+            }
+          }
+          &.offline {
+            .media {
+              .thumb {
+                @include opacity(.4);
+              }
+            }
+
+            .status {
+              border-color: $font-color;
+            }
+          }
+        }
+
+
+        &.settings {
+          >li {
+
+            .form-group {
+              .control-label {
+                @include clear-margin;
+                margin-bottom: 15px;
+                color: $font-color-light;
+                font-weight: $font-weight-light;
+                line-height: 22px;
+
+                .onoffswitch {
+                  right: -35px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.appWrap {
+  &.rtl {
+    minotaur-rightbar {
+      left: -280px;
+      right: auto;
+
+      &.rightbar-expanded {
+        left: 0;
+        right: auto;
+      }
+
+      #close-rightbar {
+        left: 10px;
+        right: auto;
+      }
+
+      .nav.nav-tabs {
+        padding: 0 40px;
+      }
+
+      .tab-content .tab-pane ul > li .media .unread {
+        right: 28px;
+        left: auto;
+      }
+
+      .tab-content .tab-pane ul.settings > li .form-group .control-label .onoffswitch {
+        right: auto;
+        left: -35px;
+      }
+    }
+  }
+}

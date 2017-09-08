@@ -1,0 +1,149 @@
+<form class="form-horizontal" role="form">
+
+  <div class="tile-body row">
+    <div class="col-sm-12">
+      <button class="pull-right btn btn-input-sm btn-danger ml-10 mb-0" type="button" ng-if="!pac.modoEditar" ng-click="pac.btnPdf();" style="padding: 5px 10px;"><i class="fa fa-file-pdf-o" style="font-size: 1.4em"></i></button>
+      <button class="pull-right btn btn-input-sm btn-warning mb-0" type="button" ng-if="!pac.modoEditar" ng-click="pac.modoEditar=true">Editar</button>
+
+      <button class="pull-right btn btn-success btn-ef btn-ef-3 btn-ef-3c mb-0" ng-if="pac.modoEditar" ng-click="pac.btnAceptarTab2(pac.ficha)"><i class="fa fa-arrow-right"></i> Guardar</button>
+      <button class="pull-right btn btn-lightred btn-ef btn-ef-4 btn-ef-4c mr-10 mb-0" ng-if="pac.modoEditar" ng-click="pac.btnCancelarTab2()" style="padding: 6px 25px"><i class="fa fa-arrow-left"></i> Cancelar</button>
+    </div>
+    <div class="col-sm-8">
+      <h4 class="text-info f-16 col-sm-12">Datos Personales</h4>
+      <div class="form-group">
+        <label for="nombre" class="col-sm-3 control-label minotaur-label">Nombre : </label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control  text-center ng-class:{'underline-input':!pac.modoEditar};" id="nombre" placeholder="Nombre" ng-model="pac.ficha.nombre" ng-readonly="!pac.modoEditar">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="apellidos" class="col-sm-3 control-label minotaur-label">Apellidos : </label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control  text-center ng-class:{'underline-input':!pac.modoEditar};" id="apellidos" placeholder="Apellidos" ng-model="pac.ficha.apellidos" ng-readonly="!pac.modoEditar">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="fecha_nac" class="col-sm-3 control-label minotaur-label">Fecha de nacimiento : </label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control  text-center ng-class:{'underline-input':!pac.modoEditar};" id="fecha_nac" ng-model="pac.ficha.fecha_nacimiento" 
+            ng-readonly="!pac.modoEditar" input-mask mask-options="{alias: 'dd-mm-yyyy'}" placeholder="dd-mm-yyyy">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="edad" class="col-sm-3 control-label minotaur-label">Edad : </label>
+        <div class="col-sm-9">
+          <p class="form-control underline-input text-center" >{{pac.ficha.edad}} años</p>
+          <!-- <input type="text" class="form-control  text-center ng-class:{'underline-input':!pac.modoEditar};" id="edad" placeholder="" ng-model="pac.ficha.edad" ng-readonly="!pac.modoEditar"> -->
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="sexo" class="col-sm-3 control-label minotaur-label">Sexo : </label>
+        <div class="col-sm-9">
+          <p ng-if="!pac.modoEditar" class="form-control underline-input text-center" >{{pac.ficha.sexo_desc}} </p>
+          <select class="form-control" ng-if="pac.modoEditar" ng-model="pac.ficha.sexo" ng-options="item.id as item.descripcion for item in pac.listaSexos" required > </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="tipo_cliente" class="col-sm-3 control-label minotaur-label">Tipo de Paciente: </label>
+        <div class="col-sm-9">
+          <p ng-if="!pac.modoEditar" class="form-control underline-input text-center" >{{pac.ficha.tipo_cliente}} </p>  
+          <select class="form-control" ng-if="pac.modoEditar" ng-model="pac.ficha.idtipocliente" ng-change="pac.cambiaTipoCliente();" 
+            ng-options="item.id as item.descripcion for item in pac.listaTiposClientes" required > 
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="empresa" class="col-sm-3 control-label minotaur-label"> Empresa: </label>
+        <div class="col-sm-9">
+          <p ng-if="!pac.modoEditar" class="form-control underline-input text-center" > {{pac.ficha.empresa}} </p> 
+          <select class="form-control" ng-if="pac.modoEditar" ng-model="pac.ficha.idempresa" ng-disabled="!pac.corp" 
+            ng-options="item.id as item.descripcion for item in pac.listaEmpresas" > 
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <h4 class="text-info f-14 col-sm-12">Foto</h4>
+      <div class="text-center" ng-if="!pac.fotoCrop">
+        <img ng-src="assets/images/dinamic/pacientes/{{pac.ficha.nombre_foto}}" style="width: 100%">
+      </div>
+
+      <div class="row" ng-show="pac.fotoCrop">
+        <div class="col-md-12">
+          <div class="p-10 bg-white b-a b-solid" style="height:180px">
+            <img-crop
+              image="pac.image.originalImage"
+              result-image="pac.image.croppedImage"
+              result-image-size="160"
+              area-type="{{pac.cropType}}"
+            ></img-crop>
+          </div>
+        </div>
+        <div class="col-md-12" ng-show="false">
+          <div class="p-15 bg-white b-a b-solid inline-block">
+            <img ng-src="{{pac.image.croppedImage}}" />
+          </div>
+        </div>
+      </div>
+      <input type="file" class="filestyle" filestyle="{
+          buttonText: 'Select image',
+          iconName: 'fa fa-file-image-o'
+        }" id="fileInput2" ng-click="pac.cargarImagen();" >
+
+      <div class="text-center mt-10" ng-show="pac.fotoCrop" >
+        <button class="btn btn-sm btn-danger" ng-click="pac.cancelarFoto();">Cancelar</button>
+        <button class="btn btn-sm btn-success" ng-click="pac.subirFoto();">Guardar Foto</button>
+      </div>
+      <button class="btn btn-sm btn-danger mt-10" ng-click="pac.eliminarFoto();" ng-show="pac.ficha.nombre_foto != 'sin-imagen.png'">Quitar Foto</button>
+
+    </div>
+  </div>
+  <div class="tile-body row">
+    <h4 class="text-info f-14 col-sm-12">Datos de Contacto</h4>
+    <div class="col-sm-12 col-md-6">
+      <div class="form-group">
+        <label for="celular" class="col-sm-3 control-label minotaur-label">Celular : </label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control  text-center ng-class:{'underline-input':!pac.modoEditar};" id="celular" placeholder="Celular" ng-model="pac.ficha.celular" ng-readonly="!pac.modoEditar">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <div class="form-group">
+        <label for="email" class="col-sm-3 control-label minotaur-label">Email : </label>
+        <div class="col-sm-9">
+          <input type="email" class="form-control  text-center ng-class:{'underline-input':!pac.modoEditar};" id="email" placeholder="micorreo@dominio.com" ng-model="pac.ficha.email" ng-readonly="!pac.modoEditar">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tile-body row">
+    <h4 class="text-info f-14 col-sm-12">Otros Datos</h4>
+    <div class="col-sm-12 col-md-6">
+      <div class="form-group">
+        <label for="estatura" class="col-sm-3 control-label minotaur-label">Estatura (cm) : </label>
+        <div class="col-sm-9">
+          <input type="number" min="100" max="290" step="1" class="form-control  text-center ng-class:{'underline-input':!pac.modoEditar};" id="estatura" placeholder="Estatura" ng-model="pac.ficha.estatura" ng-readonly="!pac.modoEditar">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <div class="form-group">
+        <label for="clasificacion" class="col-sm-3 control-label minotaur-label">Clasificación : </label>
+        <div class="col-sm-9">
+          <p type="text" class="form-control underline-input text-center" ng-if="!pac.modoEditar">{{pac.ficha.clasificacion}} </p>
+          <select class="form-control" ng-if="pac.modoEditar" ng-model="pac.ficha.idmotivoconsulta" ng-options="item.id as item.descripcion for item in pac.listaMotivos" required > </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <div class="form-group">
+        <label for="cargo_laboral" class="col-sm-3 control-label minotaur-label">Cargo Laboral : </label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control  text-center ng-class:{'underline-input':!pac.modoEditar};" id="cargo_laboral" placeholder="Cargo Laboral" ng-model="pac.ficha.cargo_laboral" ng-readonly="!pac.modoEditar">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

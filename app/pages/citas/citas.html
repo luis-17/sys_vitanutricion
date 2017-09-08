@@ -1,0 +1,133 @@
+<div id="pageConsulta" class="page page-ui pull-to-header page-consulta" ng-if="viewConsulta && vm.tipoVista == 'new'" 
+      ng-include="'app/pages/consultas/consulta.html'" ng-show="viewConsulta && vm.tipoVista == 'new'"
+      ng-controller="ConsultasController as cons" ng-init="cons.initConsulta(vm.event,'citas', vm.actualizarCalendario, 'new', tipoDieta);" > 
+</div>
+<div id="pageConsulta" class="page page-ui pull-to-header page-consulta" ng-if="viewConsulta && vm.tipoVista == 'edit'" 
+      ng-include="'app/pages/consultas/consulta.html'" ng-show="viewConsulta && vm.tipoVista == 'edit'"
+      ng-controller="ConsultasController as cons" ng-init="cons.initConsulta(vm.event,'citas', vm.actualizarCalendario, 'edit', tipoDieta);" > 
+</div>
+
+<div id="pagePlan" class="page page-ui pull-to-header page-plan" ng-if="viewPlan" 
+      ng-include="'app/pages/plan-alimentario/plan-alimentario.html'"
+      ng-controller="PlanAlimentarioController as plan" ng-init="plan.initPlan(consulta,'consulta', 'new', vm.actualizarCalendario);" > 
+</div>
+<div id="pagePlan" class="page page-ui pull-to-header page-plan" ng-if="viewSoloPlan" 
+      ng-include="'app/pages/plan-alimentario/plan-alimentario.html'"
+      ng-controller="PlanAlimentarioController as plan" ng-init="plan.initPlan(vm.event.atencion,'cita', vm.tipoVistaPlan, vm.actualizarCalendario);" > 
+</div>
+
+<div id="pagePaciente" ng-if="viewFicha" ng-include="'app/pages/paciente/paciente.html'" ng-show="viewFicha"
+      ng-controller="PacienteController as pac" ng-init="pac.btnExternoVerFicha(vm.event);"> 
+</div>
+
+<div class="page page-ui pull-to-header" id="pageCitas" ng-show="viewCita || viewOnlyBodyCita">
+  <ol class="breadcrumb bg-white" ng-hide="viewOnlyBodyCita">
+    <li><a ui-sref="dashboard">Inicio</a></li>
+    <li class="active">Citas</li>
+  </ol>
+  <!-- row -->
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div class="tile" >
+        <section class="tile-header">
+          <h1 class="heading">Citas</h1> 
+          <div class="controls">
+            <div class="btn-group" uib-dropdown>
+              <button class="btn btn-transparent" uib-dropdown-toggle><i class="fa fa-cog"></i></button>
+              <ul class="dropdown-menu dropdown-menu-custom" uib-dropdown-menu role="menu">
+                <li role="menuitem"><a href="javascript:;" minotaur-tile-minimize></a></li>
+                <li role="menuitem"><a href="javascript:;" minotaur-tile-refresh ng-click=" "></a></li>
+                <li role="menuitem"><a href="javascript:;" minotaur-tile-fullscreen></a></li>
+                <li role="menuitem"><a href="javascript:;" minotaur-tile-lightbox></a></li>
+              </ul>
+            </div>
+            <minotaur-tile-close></minotaur-tile-close>
+          </div>
+        </section>
+
+        <section class="tile-body col-lg-12 col-md-12">
+          <!-- right side header -->
+          <div class="col-lg-12 col-md-12 mb-10">
+            <div class="row">
+              <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 pull-left">
+                <div class="label bg-primary" 
+                      style="display: table;position: relative;top: -6px;width: 90px;">
+                      CITAS
+                </div>
+                <div class="label bg-success" style="display: table;width: 90px;">CONSULTAS</div>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <select class="form-control input-sm mb-4" ng-model="vm.fBusqueda.profesional"
+                    ng-options="p.profesional for p in vm.listaProfesionales"
+                    ng-change="vm.actualizarCalendario();">
+                </select>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 pull-right" style="    text-align: right;">
+                <button type="button" class="btn btn-sm btn-default" ng-click="vm.today()">Hoy</button>
+                <div class="btn-group">
+                  <button class="btn btn-default btn-sm" ng-click="vm.changeView('agendaDay', 'calendarCitas')">Dia</button>
+                  <button class="btn btn-default btn-sm" ng-click="vm.changeView('agendaWeek', 'calendarCitas')">Semana</button>
+                  <button class="btn btn-default btn-sm" ng-click="vm.changeView('month', 'calendarCitas')">Mes</button>
+                </div>
+                <button type="button" class="btn btn-success btn-sm" ng-click='vm.btnCita(null,pacienteOrigen,null,consultaOrigen)'>Nueva Cita</button>
+                <button type="button" class="btn btn-info btn-sm" ng-click='vm.actualizarCalendario(true);'>
+                  <i class="fa fa-refresh"></i>
+                </button>              
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-12">
+            <div class="menu-dropdown" uib-dropdown 
+                  style="position:absolute; top:{{vm.event.posY}}px;left:{{vm.event.posX}}px;"
+                  ng-mouseleave="vm.closeMenu();">
+                <div class="my-dropdown">
+                  <ul class="dropdown-menu dropdown-menu-custom" uib-dropdown-menu role="menu">
+                    <li role="menuitem" ng-click="changeViewCita(false);changeViewConsulta(false);changeViewFicha(true);">
+                      <a ><i class="fa fa-user"></i>Ir al Paciente</a>
+                    </li>
+                    <li role="menuitem" ng-if="!vm.event.atencion.idatencion" 
+                        ng-click="vm.btnGenerarConsulta(vm.event); changeViewCita(false);">
+                      <a ><i class="fa fa-check-square-o"></i>Generar Consulta</a>
+                    </li>
+                    <li role="menuitem" ng-if="!vm.event.atencion.idatencion" ng-click="vm.btnEditCita(vm.event)">
+                      <a ><i class="fa fa-calendar"></i>Modificar Cita</a>
+                    </li>
+                    <li role="menuitem" ng-if="!vm.event.atencion.idatencion" ng-click="vm.btnAnular(vm.event)">
+                      <a ><i class="fa fa-remove"></i>Anular Cita</a>
+                    </li>
+                    <li role="menuitem" ng-if="vm.event.atencion.idatencion" 
+                        ng-click="vm.btnEditarConsulta(vm.event); changeViewCita(false);">
+                      <a ><i class="fa fa-pencil-square-o"></i>Ir a Consulta</a>
+                    </li>
+                    <li role="menuitem" ng-if="vm.event.atencion.idatencion && !vm.event.atencion.tipo_dieta" 
+                        ng-click="vm.btnAgregarPlan(vm.event); changeViewCita(false);">
+                      <a ><i class="fa fa-list-alt"></i>Agregar Plan Alim.</a>
+                    </li>
+                    <li role="menuitem" ng-if="vm.event.atencion.idatencion && vm.event.atencion.tipo_dieta" 
+                        ng-click="vm.btnEditarPlan(vm.event); changeViewCita(false);">
+                      <a ><i class="fa fa-list-alt"></i>Ir a Plan Alim.</a>
+                    </li>
+                    <li role="menuitem" ng-if="vm.event.atencion.idatencion" ng-click="vm.btnAnularConsulta(vm.event)">
+                      <a ><i class="fa fa-remove"></i>Anular Consulta</a>
+                    </li>
+                  </ul>
+                </div>
+            </div>
+
+            <div class="calendar" ng-model="vm.eventSources" calendar="calendarCitas" ui-calendar="vm.uiConfig.calendar"></div>
+          </div>
+        </section>
+      </div>         
+    </div>    
+  </div> 
+</div>
+
+
+
+
+
+
+
+
+
+

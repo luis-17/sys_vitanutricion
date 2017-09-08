@@ -1,0 +1,61 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{mp.modalTitle}}</h4>
+</div>
+<div class="modal-body">
+	<section class="tile-body p-0">
+		<form name="formEmpresa" role="form" novalidate class="form-validation">
+		    <div class="row">
+		    	<div class="form-group col-md-12">
+					<div class="row">
+
+			            <div class="form-group col-md-6">
+			              <label for="nombrecomercial" class="control-label minotaur-label">Nombre Comercial <small class="text-red">(*)</small> </label>
+			              <input type="text" name="nombrecomercial" id="nombrecomercial" class="form-control" ng-model="mp.fData.nombre_comercial" placeholder="Registre nombre comercial" required>
+			              <div ng-messages="formEmpresa.nombrecomercial.$error" ng-if="formEmpresa.nombrecomercial.$dirty" role="alert" class="help-block text-red">
+			                <div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+			              </div>
+			            </div>
+
+			            <div class="form-group col-md-6">
+			              <label for="razonsocial" class="control-label minotaur-label">Razón Social <small class="text-red">(*)</small> </label>
+			              <input type="text" name="razonsocial" id="razonsocial" class="form-control" ng-model="mp.fData.razon_social" placeholder="Registre razón social" required>
+			              <div ng-messages="formEmpresa.razonsocial.$error" ng-if="formEmpresa.razonsocial.$dirty" role="alert" class="help-block text-red">
+			                <div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+			              </div>
+			            </div>
+			        </div>
+			        <!--  -->
+					<div class="row">
+			            <div class="form-group col-md-4">
+			              	<label for="ruc" class="control-label minotaur-label">RUC <small class="text-red">(*)</small></label>
+			              	<input type="text" name="ruc" id="ruc" class="form-control" ng-model="mp.fData.ruc" placeholder="numero de RUC" required >
+				             <div ng-messages="formEmpresa.ruc.$error" ng-if="formEmpresa.ruc.$dirty" role="alert" class="help-block text-red">
+				                <div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+				             </div>
+			            </div>
+			            <div class="form-group col-md-4">
+			              	<label for="celular" class="control-label minotaur-label">Celular </label>
+			              	<input type="text" name="celular" id="celular" class="form-control" ng-model="mp.fData.celular" placeholder="Registra celular" ng-pattern="/([0-9]{9})$/" >
+			              	<div ng-messages="formEmpresa.celular.$error" ng-if="formEmpresa.celular.$dirty" role="alert" class="help-block text-red">
+			                	<div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+			              	</div>
+			            </div>
+			            <div class="form-group col-md-4">
+			              	<label for="personacontacto" class="control-label minotaur-label">Persona de contacto </label>
+			              	<input type="text" name="personacontacto" id="personacontacto" class="form-control" ng-model="mp.fData.personal_contacto" placeholder="Registra persona de contacto" >
+			              	<div ng-messages="formEmpresa.personacontacto.$error" ng-if="formEmpresa.personacontacto.$dirty" role="alert" class="help-block text-red">
+			                	<div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+			              	</div>
+			            </div>			            
+					</div>
+		    	</div>
+
+		    </div>
+
+		</form>
+	</section>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-lightred btn-ef btn-ef-4 btn-ef-4c" ng-click="mp.cancel()"><i class="fa fa-arrow-left"></i> Cancelar</button>
+  <button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c" ng-disabled="formEmpresa.$invalid" ng-click="mp.aceptar()"><i class="fa fa-arrow-right"></i> Guardar</button>
+</div>

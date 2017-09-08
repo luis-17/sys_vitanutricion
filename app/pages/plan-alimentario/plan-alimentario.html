@@ -1,0 +1,176 @@
+<ol class="breadcrumb bg-white" ng-show="plan.seleccionadoTipo && viewPlan">
+  <li><a ui-sref="dashboard">Inicio</a></li>
+  <li><a ng-click='changeViewPlan(false);changeViewConsulta(true,3,idatencion,null,tipoDieta);'>Consulta</a></li>
+  <li class="active">Plan Alimentario</li>
+</ol>
+<ol class="breadcrumb bg-white" ng-show="viewSoloPlan">
+  <li><a ui-sref="dashboard">Inicio</a></li>
+  <li><a ng-click='changeViewSoloPlan(false);changeViewCita(true);'>Cita</a></li>
+  <li class="active">Plan Alimentario</li>
+</ol>
+
+<div class="row" ng-if="!plan.seleccionadoTipo">
+  <div class="col-lg-12 col-md-12"> 
+    <div class="tile">
+      <!-- tile header -->
+      <section class="tile-header" >
+        <h1 class="heading col-lg-8 col-md-8 col-sm-12 mb-10">Selecciona el Tipo de plan</h1>         
+        <div class="col-lg-4 col-md-4 mb-10 col-sm-12">
+          <!-- <div class="pull-right">
+            <button type="button" class="btn btn-warning" ng-click='changeViewPlan(false);'>Cancelar</button>
+          </div> -->
+        </div>        
+      </section>
+      <!-- /tile header -->
+      <section class="tile-body col-lg-12 col-md-12" >
+        <div class="col-lg-12 col-md-12">
+          <div class="row">
+            <div class="col-sm-6 col-xs-12">
+              <div class="item-plan plan1" ng-click="plan.seleccionaTipo('simple');changeViewConsulta(false);">
+                <label class="control-label minotaur-label">Plan simple</label>
+                <div class="">
+                  <img src="">
+                </div>
+                <div class="descripcion-plan">                
+                  Crea un plan desde cero, escribe lo que quieras en cada dia de la semana.
+                </div>
+              </div>                            
+            </div>
+            <div class="col-sm-6 col-xs-12">
+              <div class="item-plan plan2" ng-click="plan.seleccionaTipo('compuesto');changeViewConsulta(false);">
+              <label class="control-label minotaur-label">Plan compuesto</label>
+              <div class="">
+                <img src="">
+              </div>
+              <div class="descripcion-plan">                
+                Genera un plan con ayuda de la gran base de alimentos y platos con valoracion nutricional
+              </div>
+              </div>
+            </div>
+          </div>          
+        </div>
+        <!-- /right side body -->
+      </section>
+    </div>    
+   </div>
+</div>  
+
+<div class="row" ng-show="plan.seleccionadoTipo">
+  <div class="col-lg-12 col-md-12">
+    <div class="tile">
+      <section class="tile-header pb-n" >
+        <h1 class="heading col-lg-5 col-md-5 col-sm-12 mb-10">Ingrese los alimentos</h1>         
+        <div class="col-lg-7 col-md-7 mb-10 col-sm-12">
+          
+          <button type="button" class="btn btn-info" style="float:right;"
+              ng-click="plan.btnImprimirPlan()">
+              <i class="fa fa-file-pdf-o"></i>
+          </button>
+          <button type="button" class="btn btn-success mr-15" style="float:right;"
+              ng-click="plan.btnGuardarPlan()"  ng-if="plan.tipoVista == 'new' || plan.tipoVista == 'plantillaNew'"                  
+                  ng-disabled="formDiagnostico.$invalid"> Guardar
+          </button>
+          <button type="button" class="btn btn-success mr-15" style="float:right;"
+              ng-click="plan.btnActualizarPlan()"  ng-if="plan.tipoVista == 'edit' || plan.tipoVista == 'plantillaEdit'" 
+                  ng-disabled="formDiagnostico.$invalid"> Guardar
+          </button>
+
+          <button type="button" class="btn btn-warning col-lg-3 mr-15" style="float:right;width:100px;"
+                  ng-click='changeViewPlan(false);changeViewConsulta(true,3,idatencion,null,tipoDieta);plan.callbackCitas();' 
+                  ng-if="viewPlan">Salir
+          </button>
+          <button type="button" class="btn btn-warning col-lg-3 mr-15" style="float:right;width:100px;"
+                  ng-click='changeViewSoloPlan(false);changeViewCita(true);plan.callbackCitas();'
+                  ng-if="viewSoloPlan">Salir
+          </button>
+          <div class="row" ng-init="plan.listarPlantillas(plan.formaPlan);">
+            <div class="btn-group col-lg-4" style="float:right;">
+              <label class="btn btn-default" ng-model="plan.formaPlan" 
+                      ng-click="plan.updateEstructura(true);plan.listarPlantillas(plan.formaPlan);" uib-btn-radio="'dia'" >
+                Por día 
+              </label>
+              <label class="btn btn-default" ng-model="plan.formaPlan" 
+                      ng-click="plan.updateEstructura(true);plan.listarPlantillas(plan.formaPlan);" uib-btn-radio="'general'" >
+                General
+              </label>
+            </div>            
+          </div>
+        </div>    
+        <!-- <div class="col-md-12">
+          <div class="row">
+            <label class="col-sm-1 control-label minotaur-label">Paciente: </label>
+            <div class="col-sm-11">
+              <p type="text" class=""> {{plan.consulta.paciente}}</p>
+            </div>            
+          </div>
+        </div> -->
+        <div class="form-horizontal col-md-6 ">
+          <div class="form-group p-n" style="margin-bottom: 0;">
+            <label class="col-sm-2 control-label minotaur-label pl-0" style="text-align:left;">Paciente: </label>
+            <div class="col-sm-10 pl-0">
+              <p type="text" class="form-control-static" ng-if="plan.origen=='cita'" > {{plan.consulta.paciente}}</p>
+              <p type="text" class="form-control-static" ng-if="plan.origen=='consulta'" > {{plan.consulta.cita.cliente.paciente}}</p>
+            </div>
+          </div>
+        </div>
+        <!-- seleccionaTipo activeTab -->
+        <div class="form-horizontal col-md-6 p-0" ng-show="plan.consulta.tipo_dieta == 'SG' || plan.tipoPlan == 'simple'"> 
+          <button type="button" class="btn btn-success btn-sm pull-right" ng-click='plan.guardarComoPlantilla();' 
+            style="margin-left: 10px;"> GUARDAR COMO PLANTILLA </button> 
+          <button type="button" ng-disabled="!(plan.planPlantilla.id)" class="btn btn-info btn-sm pull-right" ng-click='plan.mostrarDatosDesdePlantilla();' 
+            style="margin-left: 10px;"> IMPORTAR PLANTILLA </button> 
+          <select class="form-control input-sm pull-right" name="planPlantilla" ng-model="plan.planPlantilla" 
+            ng-options="item as item.descripcion for item in plan.listaPlanPlantillas" style="width: 250px;"> </select> 
+          
+        </div>
+        <div class="clearfix"></div> 
+      </section>
+      <section class="tile-body pt-n">              
+        <uib-tabset class="minotaur-tab minotaur-tab-theme mb-10" justified="true" ng-if="plan.formaPlan == 'dia'" 
+          ng-init="indextab = 1">
+          <uib-tab heading="{{dia.nombre_dia}}"  active="{{dia.id == plan.activeTab}}" ng-click="plan.changeTab(dia.id);"
+            ng-repeat="(indexDia, dia) in plan.dias" style=" text-transform: uppercase;" class="{{dia.class}}" >
+            <div ng-if="plan.tipoPlan == 'simple'" ng-include="'app/pages/plan-alimentario/plan-simple-template.html'"></div>
+            <div ng-if="plan.tipoPlan == 'compuesto'" ng-include="'app/pages/plan-alimentario/plan-compuesto-template.html'"></div>
+          </uib-tab>
+        </uib-tabset>
+
+        <uib-tabset class="minotaur-tab minotaur-tab-theme mb-10" justified="true" ng-if="plan.formaPlan == 'general'">
+          <uib-tab heading="GENERAL"  >
+            <div ng-if="plan.tipoPlan == 'simple'" ng-include="'app/pages/plan-alimentario/plan-simple-template.html'"></div>
+            <div ng-if="plan.tipoPlan == 'compuesto'" ng-include="'app/pages/plan-alimentario/plan-compuesto-template.html'"></div>
+          </uib-tab>
+        </uib-tabset>
+        <div class="col-sm-12 mt-10">
+          <label class="control-label minotaur-label pr-0" style="top: 6px;">Indicaciones:</label>
+          <textarea class="form-control input-sm mb-10" ng-model="plan.indicaciones"></textarea>
+        </div>
+      </section>
+      <section class="tile-footer">
+        <div class="mb-20 col-sm-12">
+          <button type="button" class="btn btn-info" style="float:right;"
+              ng-click="plan.btnImprimirPlan()">
+              <i class="fa fa-file-pdf-o"></i>
+          </button>
+          <button type="button" class="btn btn-success mr-15" style="float:right;"
+              ng-click="plan.btnGuardarPlan()"  ng-if="plan.tipoVista == 'new' || plan.tipoVista == 'plantillaNew'"                  
+                  ng-disabled="formDiagnostico.$invalid"> Guardar
+          </button>
+          <button type="button" class="btn btn-success mr-15" style="float:right;"
+              ng-click="plan.btnActualizarPlan()"  ng-if="plan.tipoVista == 'edit' || plan.tipoVista == 'plantillaEdit'"                    
+                  ng-disabled="formDiagnostico.$invalid"> Guardar
+          </button> 
+          <button type="button" class="btn btn-warning col-lg-3 mr-15" style="float:right;width:100px;"
+                ng-click='changeViewPlan(false);changeViewConsulta(true,3,idatencion,null,tipoDieta);plan.callbackCitas();'
+                ng-if="viewPlan">Salir 
+          </button>
+          <button type="button" class="btn btn-warning col-lg-3 mr-15" style="float:right;width:100px;"
+                  ng-click='changeViewSoloPlan(false);changeViewCita(true);plan.callbackCitas();'
+                  ng-if="viewSoloPlan">Salir
+          </button>
+        </div>            
+      </section>
+    </div>
+  </div>
+</div>
+

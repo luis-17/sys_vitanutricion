@@ -1,0 +1,31 @@
+{
+  "name": "dragular",
+  "version": "4.4.0",
+  "description": "Angular drag and drop library based on dragula, but full featured. For light-weight angular wrap of dragula look for angular-dragula",
+  "main": [
+    "dist/dragular.min.js",
+    "dist/dragular.min.css"
+  ],
+  "dependencies": {
+    "angular": "1.x"
+  },
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    ".publish"
+  ],
+  "homepage": "http://luckylooke.github.io/dragular/",
+  "authors": [
+    "Ctibor Laky <luckylooke@gmail.com>"
+  ],
+  "license": "MIT",
+  "_release": "4.4.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v4.4.0",
+    "commit": "f6b030ee44aaccde305b120a05081e7fe6f195a7"
+  },
+  "_source": "https://github.com/luckylooke/dragular.git",
+  "_target": "^4.2.3",
+  "_originalSource": "dragular"
+}

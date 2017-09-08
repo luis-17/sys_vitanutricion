@@ -1,0 +1,15 @@
+{
+  "Menu": {
+    "DASHBOARD": "Dashboard",
+    "PROFESIONALES": "Profesionales",
+    "USUARIOS": "Usuarios",
+    "ROLES": "Roles",
+    "PACIENTES": "Pacientes",
+    "CITAS": "Citas",
+    "EMPRESAS": "Empresas",
+    "ALIMENTOS": "Alimentos",
+    "ESTADISTICAS": "Estadísticas",
+    "INFORMES": "Informes Empresariales" 
+  }
+}
+

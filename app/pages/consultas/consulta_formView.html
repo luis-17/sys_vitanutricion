@@ -1,0 +1,295 @@
+<div class="modal-header">
+  <h4 class="modal-title"> {{modalcon.modalTitle}} </h4>
+</div>
+<div class="modal-body">
+	<section class="tile-body p-0">
+		<form name="outerForm" role="form" novalidate class="form-validation">
+			<div class="row">
+	            <div class="form-horizontal col-md-12">	            	
+		            <div class="form-group col-md-10">
+		              <label class="col-sm-2 control-label minotaur-label">Paciente: </label>
+		              <div class="col-sm-6">
+		              	<p type="text" class="form-control-static" > {{modalcon.fData.paciente}}</p>
+		              </div>			              
+		            </div>
+
+		            <div class="form-group col-md-2">
+		              <!-- <label for="name" class="control-label minotaur-label"> <span class="text-red">*</span>: </label>
+		              <input type="checkbox" required class="form-control"  />
+		               -->
+		               <label class="checkbox minotaur-checkbox minotaur-label">¿Embarazo? 
+		              	<input type="checkbox" ng-model="modalcon.fData.si_embarazo"><div class="input-indicator"></div>
+		              </label>
+		            </div>
+	            </div>
+
+	            <div class="form-horizontal col-md-6">
+	            	<legend>Composicion</legend>	            	
+            		<div class="form-group">
+		              <label class="col-sm-5 control-label minotaur-label">Estatura: </label>
+		              <div class="col-sm-3">
+		              	<p type="text" class="form-control-static" > {{modalcon.fData.estatura}} <strong>cm</strong></p>
+		              </div>			              
+		            </div>
+		            <div class="form-group">
+		              <label for="peso" class="col-sm-5 control-label minotaur-label">Peso <span class="text-red">*</span>: </label>
+		              <div class="input-group col-sm-3">
+		              	<input type="text" name="peso" required class="form-control" ng-model="modalcon.fData.peso" />
+		              	<span class="input-group-addon">Kg</span>
+		              </div>			              
+		            </div>
+		            <div class="form-group">
+		              <label class="col-sm-5 control-label minotaur-label">Masa Grasa <span class="text-red">*</span>: </label>
+		              <div class="input-group col-sm-6">
+		              	<input type="text" required class="form-control" ng-model="modalcon.fData.porc_masa_grasa" />
+		              	<span class="input-group-addon">%</span>
+		              	<input type="text" disabled class="form-control" />
+		              	<span class="input-group-addon">Kg</span>
+		              </div>			              
+		            </div>
+		            <div class="form-group">
+		              <label class="col-sm-5 control-label minotaur-label">Masa Libre de Grasa <span class="text-red">*</span>: </label>
+		              <div class="input-group col-sm-6">
+		              	<input type="text" required class="form-control" ng-model="modalcon.fData.porc_masa_libre" />
+		              	<span class="input-group-addon">%</span>
+		              	<input type="text" disabled class="form-control" />
+		              	<span class="input-group-addon">Kg</span>
+		              </div>			              
+		            </div>
+		            <div class="form-group">
+		              <label class="col-sm-5 control-label minotaur-label">Masa Muscular <span class="text-red">*</span>: </label>
+		              <div class="input-group col-sm-6">
+		              	<input type="text" required class="form-control" ng-model="modalcon.fData.porc_masa_muscular" />
+		              	<span class="input-group-addon">%</span>
+		              	<input type="text" required class="form-control" ng-model="modalcon.fData.kg_masa_muscular" />
+		              	<span class="input-group-addon">Kg</span>
+		              </div>			              
+		            </div>
+		            <div class="form-group">
+		              <label class="col-sm-5 control-label minotaur-label">Agua Corporal: </label>
+		              <div class="input-group col-sm-6">
+		              	<input type="text" class="form-control" ng-model="modalcon.fData.porc_agua_corporal" />
+		              	<span class="input-group-addon">%</span>
+		              	<input type="text" class="form-control" ng-model="modalcon.fData.kg_agua_corporal" />
+		              	<span class="input-group-addon">Kg</span>
+		              </div>			              
+		            </div>
+		            <div class="form-group">
+		              <label class="col-sm-5 control-label minotaur-label">Grasa Visceral <span class="text-red">*</span>: </label>
+		              <div class="input-group col-sm-6">
+		              	<input type="text" required class="form-control" ng-model="modalcon.fData.porc_grasa_visceral" />
+		              	<span class="input-group-addon">%</span>
+		              	<input type="text" required class="form-control" ng-model="modalcon.fData.kg_grasa_visceral" />
+		              	<span class="input-group-addon">Kg</span>
+		              </div>			              
+		            </div>	            	
+	            </div> 
+
+	            <div class="form-horizontal col-md-6">
+	            	<legend>Medidas</legend>
+	            	<div class="row">
+	            		<div class="col-md-6">	
+	            			<div class="form-group">
+				              <label class="col-sm-5 control-label minotaur-label">Pecho: </label>
+				              <div class="input-group col-sm-6">
+				              	<input type="text"  class="form-control" ng-model="modalcon.fData.cm_pecho" />
+				              	<span class="input-group-addon">cm</span>
+				              </div>			              
+				            </div>
+				            <div class="form-group">
+				              <label class="col-sm-5 control-label minotaur-label">Antebrazo: </label>
+				              <div class="input-group col-sm-6">
+				              	<input type="text"  class="form-control" ng-model="modalcon.fData.cm_antebrazo" />
+				              	<span class="input-group-addon">cm</span>
+				              </div>			              
+				            </div>
+				            <div class="form-group">
+				              <label class="col-sm-5 control-label minotaur-label">Cintura: </label>
+				              <div class="input-group col-sm-6">
+				              	<input type="text"  class="form-control" ng-model="modalcon.fData.cm_cintura" />
+				              	<span class="input-group-addon">cm</span>
+				              </div>			              
+				            </div>
+				            <div class="form-group">
+				              <label class="col-sm-5 control-label minotaur-label">Abdomen: </label>
+				              <div class="input-group col-sm-6">
+				              	<input type="text"  class="form-control" ng-model="modalcon.fData.cm_abdomen" />
+				              	<span class="input-group-addon">cm</span>
+				              </div>			              
+				            </div> 
+				            <div class="form-group">
+				              <label class="col-sm-5 control-label minotaur-label">Cadera: </label>
+				              <div class="input-group col-sm-6">
+				              	<input type="text"  class="form-control" ng-model="modalcon.fData.cm_cadera_gluteo" />
+				              	<span class="input-group-addon">cm</span>
+				              </div>			              
+				            </div>
+				            <div class="form-group">
+				              <label class="col-sm-5 control-label minotaur-label">Muslo: </label>
+				              <div class="input-group col-sm-6">
+				              	<input type="text"  class="form-control" ng-model="modalcon.fData.cm_muslo" />
+				              	<span class="input-group-addon">cm</span>
+				              </div>			              
+				            </div>            	
+	            		</div>
+	            		<div class="col-md-6">
+	            			<div class="form-group">
+				              <label class="col-sm-5 control-label minotaur-label">Hombros: </label>
+				              <div class="input-group col-sm-6">
+				              	<input type="text"  class="form-control" ng-model="modalcon.fData.cm_hombros" />
+				              	<span class="input-group-addon">cm</span>
+				              </div>			              
+				            </div>
+				            <div class="form-group">
+				              <label class="col-sm-5 control-label minotaur-label">Biceps relajado: </label>
+				              <div class="input-group col-sm-6">
+				              	<input type="text"  class="form-control" ng-model="modalcon.fData.cm_biceps_relajado" />
+				              	<span class="input-group-addon">cm</span>
+				              </div>			              
+				            </div>
+				            <div class="form-group">
+				              <label class="col-sm-5 control-label minotaur-label">Biceps contraido: </label>
+				              <div class="input-group col-sm-6">
+				              	<input type="text"  class="form-control" ng-model="modalcon.fData.cm_biceps_contraido" />
+				              	<span class="input-group-addon">cm</span>
+				              </div>			              
+				            </div>
+				            <div class="form-group">
+				              <label class="col-sm-5 control-label minotaur-label">Muñeca: </label>
+				              <div class="input-group col-sm-6">
+				              	<input type="text"  class="form-control" ng-model="modalcon.fData.cm_muneca" />
+				              	<span class="input-group-addon">cm</span>
+				              </div>			              
+				            </div> 
+				            <div class="form-group">
+				              <label class="col-sm-5 control-label minotaur-label">Rodilla: </label>
+				              <div class="input-group col-sm-6">
+				              	<input type="text"  class="form-control" ng-model="modalcon.fData.cm_rodilla" />
+				              	<span class="input-group-addon">cm</span>
+				              </div>			              
+				            </div> 
+				            <div class="form-group">
+				              <label class="col-sm-5 control-label minotaur-label">Gemelos: </label>
+				              <div class="input-group col-sm-6">
+				              	<input type="text"  class="form-control" ng-model="modalcon.fData.cm_gemelos" />
+				              	<span class="input-group-addon">cm</span>
+				              </div>			              
+				            </div>
+				            <div class="form-group">
+				              <label class="col-sm-5 control-label minotaur-label">Tobillo: </label>
+				              <div class="input-group col-sm-6">
+				              	<input type="text"  class="form-control" ng-model="modalcon.fData.cm_tobillo" />
+				              	<span class="input-group-addon">cm</span>
+				              </div>			              
+				            </div> 	            	
+	            		</div>	            	
+	            	</div>	    	
+	            </div>
+
+	            <div class="form-horizontal col-md-12 mt-15">
+	                <div style="width:100%; text-align:center;">
+	                  <button type="button" class="btn btn-sm btn-green mb-10"
+	                          data-toggle="collapse" data-target="#pliegues"
+	                          ng-click="cons.changeToggle();">{{cons.titleToggle}}
+	                  </button>
+	                </div> 
+	                <div id="pliegues" class="collapse">
+	                  <div class="form-horizontal col-md-7 col-xs-12"> 
+	                    <legend>Pliegues</legend>
+	                    <div class="col-md-6">
+	                      <div class="form-group">
+	                        <label class="col-sm-5 control-label minotaur-label">Tricipital: </label>
+	                        <div class="input-group col-sm-6">
+	                          <input type="number" step="0.01" class="form-control" ng-model="cons.fData.cm_tricipital" />
+	                          <span class="input-group-addon">cm</span>
+	                        </div>
+	                      </div>
+	                      <div class="form-group">
+	                        <label class="col-sm-5 control-label minotaur-label">Bicipital: </label>
+	                        <div class="input-group col-sm-6">
+	                          <input type="number" step="0.01" class="form-control" ng-model="cons.fData.cm_bicipital" />
+	                          <span class="input-group-addon">cm</span>
+	                        </div>
+	                      </div>
+	                      <div class="form-group">
+	                        <label class="col-sm-5 control-label minotaur-label">Subescapular: </label>
+	                        <div class="input-group col-sm-6">
+	                          <input type="number" step="0.01" class="form-control" ng-model="cons.fData.cm_subescapular" />
+	                          <span class="input-group-addon">cm</span>
+	                        </div>
+	                      </div>
+	                      <div class="form-group">
+	                        <label class="col-sm-5 control-label minotaur-label">Axilar: </label>
+	                        <div class="input-group col-sm-6">
+	                          <input type="number" step="0.01" class="form-control" ng-model="cons.fData.cm_axilar" />
+	                          <span class="input-group-addon">cm</span>
+	                        </div>
+	                      </div>
+	                      <div class="form-group">
+	                        <label class="col-sm-5 control-label minotaur-label">Pectoral: </label>
+	                        <div class="input-group col-sm-6">
+	                          <input type="number" step="0.01" class="form-control" ng-model="cons.fData.cm_pectoral" />
+	                          <span class="input-group-addon">cm</span>
+	                        </div>
+	                      </div>
+	                    </div> 
+	                    <div class="col-md-6">
+	                      <div class="form-group">
+	                        <label class="col-sm-5 control-label minotaur-label">Suprailiaco: </label>
+	                        <div class="input-group col-sm-6">
+	                          <input type="number"step="0.01"  class="form-control" ng-model="cons.fData.cm_suprailiaco" />
+	                          <span class="input-group-addon">cm</span>
+	                        </div>
+	                      </div>
+	                      <div class="form-group">
+	                        <label class="col-sm-5 control-label minotaur-label">Supraespinal: </label>
+	                        <div class="input-group col-sm-6">
+	                          <input type="number" step="0.01" class="form-control" ng-model="cons.fData.cm_supraespinal" />
+	                          <span class="input-group-addon">cm</span>
+	                        </div>
+	                      </div>
+	                      <div class="form-group">
+	                        <label class="col-sm-5 control-label minotaur-label">Abdominal: </label>
+	                        <div class="input-group col-sm-6">
+	                          <input type="number" step="0.01" class="form-control" ng-model="cons.fData.cm_abdominal" />
+	                          <span class="input-group-addon">cm</span>
+	                        </div>
+	                      </div>
+	                      <div class="form-group">
+	                        <label class="col-sm-5 control-label minotaur-label">Pierna: </label>
+	                        <div class="input-group col-sm-6">
+	                          <input type="number" step="0.01" class="form-control" ng-model="cons.fData.cm_pierna" />
+	                          <span class="input-group-addon">cm</span>
+	                        </div>
+	                      </div>
+	                    </div>
+	                  </div>
+	                  <div class="form-horizontal col-md-5 col-xs-12"> 
+	                    <legend>Valores para Objetivo</legend>
+	                    <div class="col-md-12">
+	                      <div class="form-group">
+	                        <label class="col-sm-5 control-label minotaur-label">Grasa para objetivo: </label>
+	                        <div class="input-group col-sm-6">
+	                          <input type="number" step="1"  class="form-control" ng-model="cons.fData.grasa_para_objetivo" />
+	                          <span class="input-group-addon">Kg</span>
+	                        </div>
+	                      </div>
+	                      <div class="form-group">
+	                        <label class="col-sm-5 control-label minotaur-label">Masa muscular para objetivo: </label>
+	                        <div class="input-group col-sm-6">
+	                          <input type="number" step="1" class="form-control" ng-model="cons.fData.masa_muscular_para_objetivo" />
+	                          <span class="input-group-addon">Kg</span>
+	                        </div>
+	                      </div> 
+	                    </div>
+	                  </div>
+	                </div>
+	            </div>      	            
+	        </div>
+		</form>
+	</section>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c" ng-click="modalcon.ok()"><i class="fa fa-arrow-right"></i> Aceptar</button>
+  <button class="btn btn-lightred btn-ef btn-ef-4 btn-ef-4c" ng-click="modalcon.cancel()"><i class="fa fa-arrow-left"></i> Cancelar</button>
+</div>

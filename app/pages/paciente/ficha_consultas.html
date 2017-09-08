@@ -1,0 +1,63 @@
+<style type="text/css">
+  th{border: 2px solid #fff;}
+</style>
+<form class="form-horizontal" role="form">
+	<div class="tile col-sm-12" style="min-height: 250px">
+  	<h4 class="text-info f-16">Historial de consultas</h4>
+  	<table class="table table-hover" ng-show="pac.historial.listaCabecera">
+          <thead style="background: #E8EEF4;">
+            <tr>
+              <th style="text-align: right;border-bottom: 2px solid #E8EEF4; padding-bottom: 2px;width: 200px;">Fecha</th>
+              <th style="text-align: center;border-bottom: 2px solid #E8EEF4; padding-bottom: 2px;" ng-repeat="item in pac.historial.listaCabecera">{{item.fecha}}</th>
+            </tr>
+            <tr>
+              <th style="padding-top: 2px;">Datos de consulta</th>
+              <th style="text-align: center;padding-top: 2px;" ng-repeat="item in pac.historial.listaCabecera">
+                <a href="" tooltip-placement="left" uib-tooltip="Editar" ng-click="pac.btnEditarConsulta(item); changeViewPaciente(false);" style="padding: 5px;"><i class="fa fa-edit"></i></a>
+                <a href="" tooltip-placement="bottom" uib-tooltip="PDF" ng-click="pac.btnImprimirConsulta(item);" style="padding: 5px;"><i class="fa fa-file-pdf-o"></i></a>
+                <a href="" tooltip-placement="right" uib-tooltip="Anular" ng-click="pac.btnAnularConsulta(item);" style="padding: 5px;"><i class="fa fa-trash-o"></i></a>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Peso(kg):</td>
+              <td style="text-align: center;" ng-repeat="item in pac.historial.listaPeso">{{item.valor}} kg.</td>
+            </tr>
+            <tr>
+              <td>IMC:</td>
+              <td style="text-align: center;" ng-repeat="item in pac.historial.imc">{{item.valor}}</td>
+            </tr>
+            <tr>
+              <td>Masa Grasa(%):</td>
+              <td style="text-align: center;" ng-repeat="item in pac.historial.listaMasaGrasa">{{item.valor}}</td>
+            </tr>
+            <tr>
+              <td>Masa Libre(%):</td>
+              <td style="text-align: center;" ng-repeat="item in pac.historial.listaMasaLibre">{{item.valor}}</td>
+            </tr>
+            <tr>
+              <td>Agua Corporal(%):</td>
+              <td style="text-align: center;" ng-repeat="item in pac.historial.listaPorcAgua">{{item.valor}}</td>
+            </tr>
+            <tr>
+              <td>Agua Corporal(kg):</td>
+              <td style="text-align: center;" ng-repeat="item in pac.historial.listaAguaCorporal">{{item.valor}}</td>
+            </tr>
+            <tr>
+              <td>Grasa Visceral (kg):</td>
+              <td style="text-align: center;" ng-repeat="item in pac.historial.listaGrasa">{{item.valor}}</td>
+            </tr>
+            <tr>
+              <td>Masa Muscular(%):</td>
+              <td style="text-align: center;" ng-repeat="item in pac.historial.listaPorcMasa">{{item.valor}}</td>
+            </tr>
+            <tr>
+              <td>Masa Muscular(kg):</td>
+              <td style="text-align: center;" ng-repeat="item in pac.historial.listaMasaMuscular">{{item.valor}}</td>
+            </tr>
+          </tbody>
+    </table>
+    <div class="waterMarkEmptyData" ng-show="!pac.historial.listaCabecera">NO HAY ATENCIONES</div>
+  </div>
+</form>

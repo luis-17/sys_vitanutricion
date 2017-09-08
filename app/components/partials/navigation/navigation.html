@@ -1,0 +1,62 @@
+<div class="nav-heading">
+  <h3 class="text-center">MENÚ PRINCIPAL</h3>
+</div>
+
+<div slimscroll="{
+      height: '100%',
+      size: '4px',
+      borderRadius: '0px',
+      opacity: .2
+     }">
+
+  <ul class="nav nav-sidebar">
+    <li ng-class="{'active':$state.includes('dashboard')}" ng-if="valores[0]">
+      <a ng-click="$state.reload();" ui-sref="dashboard">
+        <span class="nav-text">{{ 'Menu.DASHBOARD' | translate }}</span>
+        <i class="fa fa-home"></i>
+      </a>
+    </li>
+    <li ng-class="{'open active':$state.includes('profesional')}" ng-if="valores[1]">
+      <a ng-click="$state.reload();" ui-sref="profesional">
+        <span class="nav-text">{{ 'Menu.PROFESIONALES' | translate }}</span>
+        <i class="fa fa-user-md"></i>
+      </a>
+    </li>
+    <li ng-class="{'active':$state.includes('paciente')}" ng-if="valores[2]">
+      <a ng-click="$state.reload();" ui-sref="paciente">
+        <span class="nav-text">{{ 'Menu.PACIENTES' | translate }}  </span>
+        <i class="fa fa-users"></i>
+      </a>
+    </li>
+    <li ng-class="{'active':$state.includes('citas')}" ng-if="valores[3]">
+      <a ng-click="$state.reload();" ui-sref="citas">
+        <span class="nav-text">{{ 'Menu.CITAS' | translate }}</span>
+        <i class="fa fa-clock-o"></i>
+      </a>
+    </li>
+    <li ng-class="{'active':$state.includes('empresa')}" ng-if="valores[4]">
+      <a ng-click="$state.reload();" ui-sref="empresa">
+        <span class="nav-text">{{ 'Menu.EMPRESAS' | translate }}</span>
+        <i class="fa fa-home"></i>
+      </a>
+    </li>
+    <li ng-class="{'active':$state.includes('alimento')}" ng-if="valores[5]">
+      <a ng-click="$state.reload();" ui-sref="alimento">
+        <span class="nav-text">{{ 'Menu.ALIMENTOS' | translate }}</span>
+        <i class="fa fa-home"></i>
+      </a>
+    </li>
+    <!-- <li ng-class="{'active':$state.includes('estadistica')}" ng-if="valores[6]">
+      <a ng-click="$state.reload();" ui-sref="estadistica">
+        <span class="nav-text">{{ 'Menu.ESTADISTICAS' | translate }}</span>
+        <i class="fa fa-home"></i>
+      </a>
+    </li> -->
+    <li ng-class="{'active':$state.includes('informe-empresarial')}" ng-if="valores[7]">
+      <a ng-click="$state.reload();" ui-sref="informe-empresarial">
+        <span class="nav-text">{{ 'Menu.INFORMES' | translate }}</span>
+        <i class="fa fa-home"></i>
+      </a>
+    </li>
+  </ul>
+</div>

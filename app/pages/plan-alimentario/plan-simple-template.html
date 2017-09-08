@@ -1,0 +1,41 @@
+<fieldset ng-repeat="turno in dia.turnos" class="turno mt-20 col-md-6 col-sm-12" ng-if="plan.formaPlan == 'dia'">
+    <legend class="text-info f-16" style="text-transform: uppercase;"><strong>{{turno.descripcion}}</strong></legend>            
+    <form class="form-inline" style="text-align:left;">
+        <label class="control-label minotaur-label pr-0" style="top: 6px;">Hora:</label>
+        <div class="col-xs-12 pl-0 pb-10">
+            <select class="form-control mb-4" ng-model="turno.hora"
+                ng-options="h.value for h in plan.horas">
+            </select>
+            <select class="form-control mb-4" ng-model="turno.minuto"
+                ng-options="m.value for m in plan.minutos">
+            </select>
+            <select class="form-control mb-4" ng-model="turno.tiempo"
+                ng-options="t.value for t in plan.tiempo">
+            </select>
+        </div>        
+    </form>
+    <div class="alimentos">
+        <textarea class="form-control input-sm" ng-model="turno.indicaciones"></textarea>
+    </div>    
+</fieldset>
+
+<fieldset ng-repeat="turno in plan.dia.turnos" class="turno mt-20 col-md-6 col-sm-12" ng-if="plan.formaPlan == 'general'">
+    <legend class="text-info f-16" style="text-transform: uppercase;"><strong>{{turno.descripcion}}</strong></legend>            
+    <form class="form-inline" style="text-align:left;">
+        <label class="control-label minotaur-label pr-0" style="top: 6px;">Hora:</label>
+        <div class="col-xs-12 pl-0 pb-10">
+            <select class="form-control mb-4" ng-model="turno.hora"
+                ng-options="h.value for h in plan.horas">
+            </select>
+            <select class="form-control mb-4" ng-model="turno.minuto"
+                ng-options="m.value for m in plan.minutos">
+            </select>
+            <select class="form-control mb-4" ng-model="turno.tiempo"
+                ng-options="t.value for t in plan.tiempo">
+            </select>
+        </div>        
+    </form>
+    <div class="alimentos">
+        <textarea class="form-control input-sm" ng-model="turno.indicaciones"></textarea>
+    </div>    
+</fieldset>

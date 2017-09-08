@@ -1,0 +1,94 @@
+<script type="text/ng-template" id="password.html">
+  <div class="modal-header">
+    <h4 class="modal-title">{{ps.modalTitle}}</h4>
+  </div>
+  <div class="modal-body">
+    <section class="tile-body p-0">
+      <form name="formPassword" role="form" novalidate class="form-validation">
+          <div class="row">
+            <div class="form-group col-md-12">
+            <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="passAnt" class="control-label minotaur-label">Ingrese la Anterior contraseña <small class="text-red">(*)</small></label>
+                        <input type="password" name="passAnt" id="passAnt" class="form-control" ng-model="ps.fData.passAnt" placeholder="Ingrese contraseña" >
+                        <div ng-messages="formPassword.passAnt.$error" ng-if="formPassword.passAnt.$dirty" role="alert" class="help-block text-red">
+                          <div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="pass" class="control-label minotaur-label">Ingrese la nueva contraseña <small class="text-red">(*)</small></label>
+                        <input type="password" name="pass" id="pass" class="form-control" ng-model="ps.fData.pass" placeholder="Ingrese contraseña" required >
+                        <div ng-messages="formPassword.pass.$error" ng-if="formPassword.pass.$dirty" role="alert" class="help-block text-red">
+                          <div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="pass2" class="control-label minotaur-label">Repita la contraseña <small class="text-red">(*)</small></label>
+                        <input type="password" name="pass2" id="pass2" class="form-control" ng-model="ps.fData.pass2" placeholder="Repita contraseña" required >
+                        <div ng-messages="formPassword.pass2.$error" ng-if="formPassword.pass2.$dirty" role="alert" class="help-block text-red">
+                          <div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+                        </div>
+                    </div>                    
+            </div>
+
+          </div>
+
+      </form>
+    </section>    
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-lightred btn-ef btn-ef-4 btn-ef-4c" ng-click="ps.cancel()"><i class="fa fa-arrow-left"></i> Cancelar</button>
+    <button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c" ng-disabled="formPassword.$invalid" ng-click="ps.aceptar()"><i class="fa fa-arrow-right"></i> Guardar</button>   
+  </div>
+</script>
+
+
+<div class="page page-core page-login">
+
+  <div class="login-modal">
+
+    <div class="branding mb">
+      <img class="mb img-responsive" style="max-width: 300px; margin: auto; opacity: .6;" src="assets/images/dinamic/logo.png" alt="Sistema para Nutricionistas"> 
+      <h2 class="brand"> SISTEMA PARA <strong>NUTRICIONISTAS</strong> </h2> 
+    </div>
+
+    <!-- <div class="row social-login">
+      <div class="col-sm-4"><button class="btn btn-primary btn-lg btn-block"><i class="fa fa-facebook"></i></button></div>
+      <div class="col-sm-4"><button class="btn btn-cyan btn-lg btn-block"><i class="fa fa-twitter"></i></button></div>
+      <div class="col-sm-4"><button class="btn btn-danger btn-lg btn-block"><i class="fa fa-google-plus"></i></button></div>
+    </div> -->
+
+    <div class="line-text mt-n"></div> 
+    <form>
+      <div id="alertsPlaceholder" ng-show="fAlert" >
+        <uib-alert template-url="alert.html" class="alert alert-{{fAlert.type}}" >          
+          <i class="fa fa-warning"></i>
+          <strong class="text-uppercase">{{fAlert.strStrong}}</strong> 
+          {{fAlert.msg}}
+          <button type="button" class="close" aria-hidden="true" ng-click="fAlert = null" >×</button>
+        </uib-alert>
+      </div>
+
+      <div class="form-group with-addon">
+        <span class="input-addon"><i class="icon-user"></i></span>
+        <input type="text" placeholder="Usuario" class="form-control" ng-model="fLogin.usuario">
+      </div>
+      <div class="form-group with-addon">
+        <span class="input-addon"><i class="icon-key"></i></span>
+        <input type="password" placeholder="Contraseña" class="form-control" ng-model="fLogin.clave">
+      </div>
+      <div class="form-group">
+        <a ui-sref="pages.forgotpass" class="pull-right"> Olvidó su contraseña? </a> 
+        <label class="minotaur-checkbox minotaur-label inline-block"> Recordar 
+          <input type="checkbox" checked>
+          <div class="input-indicator"></div>
+        </label>
+      </div>
+      <button type="submit" class="btn btn-block btn-lg btn-rounded-40" ng-click="btnLoginToSystem();">INGRESAR </button>
+    </form>
+
+    <!-- <div class="mt-15 text-center">No estas registrado? <a ui-sref="pages.signup">Crear una cuenta</a></div> -->
+
+  </div>
+
+</div>

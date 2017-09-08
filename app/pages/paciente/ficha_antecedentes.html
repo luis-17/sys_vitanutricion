@@ -1,0 +1,55 @@
+<form class="form-horizontal" role="form">
+	<div class="tile-body col-sm-12">
+		<div class="row">
+			<h4 class="text-info f-16 col-sm-6">Patológicos</h4>
+			<button class="pull-right btn btn-input-sm btn-warning mb-20" type="button" ng-if="!pac.modoEditar" ng-click="pac.modoEditar=true">Editar</button>
+			<button class="pull-right btn btn-success btn-ef btn-ef-3 btn-ef-3c mb-20" ng-if="pac.modoEditar" ng-click="pac.btnAceptarTab3(pac.ficha.antecedentes)"><i class="fa fa-arrow-right"></i> Guardar</button>
+	      	<button class="pull-right btn btn-lightred btn-ef btn-ef-4 btn-ef-4c mr-10 mb-20" ng-if="pac.modoEditar" ng-click="pac.btnCancelarTab3()" style="padding: 6px 25px"><i class="fa fa-arrow-left"></i> Cancelar</button>
+
+		</div>
+
+		<div class="row">
+		    <div class="col-sm-6" ng-repeat="item in pac.listaAntPatologicos">
+		      <label class="checkbox minotaur-checkbox" ng-click="pac.cambiarCheckPatologico(item,$index);"> {{item.descripcion}}
+		        <input type="checkbox" ng-disabled="!pac.modoEditar" ng-checked="item.check == 1">
+		        <div class="input-indicator"></div>
+		      </label>
+		    </div>
+
+
+
+		</div>
+		<div class="row mt-10">
+		    <div class="col-md-4 col-sm-6">
+		      <label class="control-label">Alergias / Intolerancias Alimentarias</label>
+		      <textarea class="form-control input-sm" ng-model="pac.ficha.alergias_ia" ng-disabled="!pac.modoEditar"></textarea>
+		    </div>
+		    <div class="col-md-4 col-sm-6">
+		      <label class="control-label">Medicamentos</label>
+		      <textarea class="form-control input-sm" ng-model="pac.ficha.medicamentos" ng-disabled="!pac.modoEditar"></textarea>
+		    </div>
+		    <div class="col-md-4 col-sm-6">
+		      <label class="control-label">Otros / Notas</label>
+		      <textarea class="form-control input-sm" ng-model="pac.ficha.antecedentes_notas" ng-disabled="!pac.modoEditar"></textarea>
+		    </div>
+		</div>
+	</div>
+	<div class="tile-body col-sm-12">
+	  <h4 class="text-info f-16">Heredados</h4>
+	  <div class="row">
+	    <div class="col-sm-6" ng-repeat="item in pac.listaAntHeredados">
+	      <label class="checkbox minotaur-checkbox" ng-click="pac.cambiarCheckHeredado(item,$index);"> {{item.descripcion}}
+	        <input type="checkbox" ng-disabled="!pac.modoEditar" ng-checked="item.check == 1">
+	        <div class="input-indicator"></div>
+	      </label>
+	    </div>
+	  </div>
+	  <div class="row">
+	  	<div class="col-sm-12">
+		  	<label>Otros : </label>
+		  	<textarea class="form-control input-sm" ng-disabled="!pac.modoEditar || !pac.checkOtro" ng-model="pac.ficha.texto_otros"></textarea>
+	  	</div>
+
+	  </div>
+	</div>
+</form>

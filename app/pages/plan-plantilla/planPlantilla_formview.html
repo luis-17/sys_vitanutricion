@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{pd.modalTitle}}</h4>
+</div>
+<div class="modal-body">
+	<section class="tile-body p-0">
+		<form name="formPlanPlantilla" role="form" novalidate class="form-validation">
+		    <div class="row">
+		    	<div class="form-group col-md-12">
+					<div class="row">
+			            <div class="form-group col-md-12">
+			              <label for="nombre" class="control-label minotaur-label"> Nombre de Plantilla <small class="text-red">(*)</small> </label>
+			              <input type="text" name="nombre" id="nombre" class="form-control" ng-model="pd.fPlantilla.nombre" placeholder="Registre nombre " required >
+			              <div ng-messages="formPlanPlantilla.name.$error" ng-if="formPlanPlantilla.nombre.$dirty" role="alert" class="help-block text-red">
+			                <div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+			              </div>
+			            </div>
+			            <div class="form-group col-md-12">
+			              <label for="descripcion" class="control-label minotaur-label"> Descripción breve  </label>
+			              <textarea type="text" name="descripcion" class="form-control" ng-model="pd.fPlantilla.descripcion" placeholder="Breve descripción"> </textarea>
+			              <div ng-messages="formPlanPlantilla.descripcion.$error" ng-if="formPlanPlantilla.descripcion.$dirty" role="alert" class="help-block text-red">
+			                <div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+			              </div>
+			            </div>
+			        </div> 
+		    	</div>
+		    </div> 
+		</form>
+	</section>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-lightred btn-ef btn-ef-4 btn-ef-4c" ng-click="pd.cancel()"><i class="fa fa-arrow-left"></i> Cancelar </button>
+  <button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c" ng-disabled="formPlanPlantilla.$invalid" ng-click="pd.aceptar()"><i class="fa fa-arrow-right"></i> Guardar </button>
+</div>

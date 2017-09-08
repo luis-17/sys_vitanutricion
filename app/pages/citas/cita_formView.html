@@ -1,0 +1,81 @@
+<div class="modal-header">
+  <h4 class="modal-title"> {{modalcita.modalTitle}} </h4>
+</div>
+<div class="modal-body">
+	<section class="tile-body p-0">
+		<form name="formCita" role="form" novalidate class="form-validation">
+			<div class="row">
+	            <div class="form-group col-md-6">
+	              <label for="name" class="control-label minotaur-label" style="width: 100%;">Paciente 
+	              	<span class="text-red">*</span>: 
+	              	<span ng-controller="PacienteController as pac" ng-click="pac.btnNuevo(true,modalcita.callback);" 
+	              			ng-if="modalcita.type != 'edit'"
+	              			style="float: right;font-size: 10px;font-weight: 500;">¿Nuevo paciente?
+	              	</span> 
+	              </label>
+	              <input type="text" ng-model="modalcita.fData.cliente" class="form-control " autocomplete="off"
+                             placeholder="Digite el Paciente..." 
+                                  typeahead-loading="loadingLocations" 
+                                  uib-typeahead="item as item.paciente for item in modalcita.getPacienteAutocomplete($viewValue)" 
+                                  typeahead-min-length="2" 
+                                  typeahead-on-select="modalcita.getSelectedPaciente($item, $model, $label)"
+                                  ng-change="fData.cliente = null;" 
+                                  ng-if="modalcita.type != 'edit'"/>
+                  <input type="text" ng-model="modalcita.fData.cliente.paciente" class="form-control " autocomplete="off"
+                  				disabled ng-if="modalcita.type=='edit'"/>
+	            </div>
+
+	            <div class="form-group col-md-6">
+	              <label for="name" class="control-label minotaur-label">Fecha <span class="text-red">*</span>: </label>
+	              <p class="input-group">
+	                <input type="text" required class="form-control" uib-datepicker-popup ng-model="modalcita.fData.fecha" is-open="modalcita.dp.popup.opened" 
+	                		datepicker-options="modalcita.dp.dateOptions" close-text="Cerrar" />
+	                <span class="input-group-btn">
+	                	<button type="button" class="btn btn-default" ng-click="modalcita.dp.open()"><i class="fa fa-calendar"></i></button>
+	              	</span>
+	              </p>
+	            </div>
+
+	            <div class="form-group col-md-6">
+	              	<label for="name" class="control-label minotaur-label">Hora inicio 
+	              		<span class="text-red">*</span>: 
+	              	</label>
+	              	<div uib-timepicker required 
+		              	ng-model="modalcita.fData.hora_desde" 
+		              	ng-change="modalcita.updateHoraFin();"
+		              	hour-step="modalcita.tp1.hstep" 
+		              	minute-step="modalcita.tp1.mstep" 
+		              	show-meridian="modalcita.tp1.ismeridian">
+	             	</div>
+	            </div>
+
+	            <div class="form-group col-md-6">
+	              	<label for="name" class="control-label minotaur-label">Hora Fin 
+	              		<span class="text-red">*</span>: 
+	              	</label>
+	              	<div uib-timepicker required 
+	              		ng-model="modalcita.fData.hora_hasta" 
+	              		hour-step="modalcita.tp2.hstep" 
+	              		minute-step="modalcita.tp2.mstep" 
+	              		show-meridian="modalcita.tp2.ismeridian">
+	              	</div>
+	            </div> 
+	            <div class="form-group col-md-6">
+	              <label for="name" class="control-label minotaur-label"> Ubicacion de Cita <span class="text-red">*</span>: </label>
+	              <select class="form-control " ng-model="modalcita.fData.ubicacion"
+					ng-options="ub.descripcion for ub in modalcita.listaUbicaciones">
+				  </select>	              
+	            </div>	            
+	        </div>
+		</form>
+	</section>
+</div>
+<div class="modal-footer">
+  	<button class="btn btn-lightred btn-ef btn-ef-4 btn-ef-4c" ng-click="modalcita.cancel()">
+  		<i class="fa fa-arrow-left"></i> Cancelar
+  	</button>
+  	<button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c" 
+  		ng-disabled="formCita.$invalid" ng-click="modalcita.ok();">
+  		<i class="fa fa-arrow-right"></i> Guardar
+  	</button>
+</div>

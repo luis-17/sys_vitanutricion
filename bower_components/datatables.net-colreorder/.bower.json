@@ -1,0 +1,46 @@
+{
+  "name": "datatables.net-colreorder",
+  "description": "ColReorder for DataTables ",
+  "main": [
+    "js/dataTables.colReorder.js"
+  ],
+  "keywords": [
+    "reorder",
+    "DataTables",
+    "jQuery",
+    "table",
+    "DataTables"
+  ],
+  "dependencies": {
+    "jquery": ">=1.7",
+    "datatables.net": ">=1.10.9"
+  },
+  "moduleType": [
+    "globals",
+    "amd",
+    "node"
+  ],
+  "ignore": [
+    "composer.json",
+    "datatables.json",
+    "package.json"
+  ],
+  "authors": [
+    {
+      "name": "SpryMedia Ltd",
+      "homepage": "https://datatables.net"
+    }
+  ],
+  "homepage": "https://datatables.net",
+  "license": "MIT",
+  "version": "1.3.3",
+  "_release": "1.3.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.3.3",
+    "commit": "1686c5e7b4a78c4e8e63170e14153fcb22287e84"
+  },
+  "_source": "https://github.com/DataTables/Dist-DataTables-ColReorder.git",
+  "_target": ">=1.2.0",
+  "_originalSource": "datatables.net-colreorder"
+}

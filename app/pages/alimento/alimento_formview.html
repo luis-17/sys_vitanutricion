@@ -1,0 +1,96 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{modalAli.modalTitle}}</h4>
+</div>
+<div class="modal-body">
+	<section class="tile-body">
+		<form name="formAlimento" role="form" novalidate class="form-validation">
+		    <div class="row">
+				<div class="form-group col-md-3">
+	                <label for="grupo1" class="control-label minotaur-label"> Grupo 1 <small class="text-red">(*)</small> </label>
+	                <select class="form-control" id="grupo1" ng-model="modalAli.fData.idgrupo1" ng-options="item as item.descripcion for item in modalAli.listaGrupo1" ng-change="modalAli.cambiogrupo()" required > 
+	                </select>
+	                <div ng-messages="formAlimento.grupo1.$error" ng-if="formAlimento.grupo1.$dirty" role="alert" class="help-block text-red">
+	                 	<div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+	                </div>
+        		</div>
+				<div class="form-group col-md-3">
+	                <label for="grupo2" class="control-label minotaur-label"> Grupo 2 <small class="text-red">(*)</small> </label>
+	                <select class="form-control" id="grupo2" ng-model="modalAli.fData.idgrupo2" ng-options="item as item.descripcion for item in modalAli.listaGrupo2" ng-disabled="modalAli.fData.idgrupo1.id == 0" required > 
+	                </select>
+	                <div ng-messages="formAlimento.grupo2.$error" ng-if="formAlimento.grupo2.$dirty" role="alert" class="help-block text-red">
+	                 	<div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+	                </div>
+        		</div>        		
+	            <div class="form-group col-md-6">
+	              	<label for="nombre" class="control-label minotaur-label">Nombre <small class="text-red">(*)</small> </label>
+	              	<input type="text" name="nombre" id="nombre" class="form-control" ng-model="modalAli.fData.nombre" placeholder="Registre nombre del alimento" required>
+	              	<div ng-messages="formAlimento.nombre.$error" ng-if="formAlimento.nombre.$dirty" role="alert" class="help-block text-red">
+	                	<div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+	              	</div>
+	            </div>
+		    </div>
+		    <div class="row">
+	            <!-- <div class="form-group col-md-3">
+	              	<label for="medida" class="control-label minotaur-label">Medida Casera <small class="text-red">(*)</small> </label>
+	              	<input type="text" name="medida" id="medida" class="form-control" ng-model="modalAli.fData.medida_casera" placeholder="Medida casera" required>
+	              	<div ng-messages="formAlimento.medida.$error" ng-if="formAlimento.medida.$dirty" role="alert" class="help-block text-red">
+	                	<div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+	              	</div>	              	
+	            </div>	 -->	    
+	            <div class="form-group col-md-3">
+	              	<label for="calorias" class="control-label minotaur-label">Calorias </label>
+	              	<input type="text" name="calorias" id="calorias" class="form-control" ng-model="modalAli.fData.calorias" placeholder="Calorias (cal)" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
+	            </div>
+	            <div class="form-group col-md-3">
+	              	<label for="proteinas" class="control-label minotaur-label">Proteinas </label>
+	              	<input type="text" name="proteinas" id="proteinas" class="form-control" ng-model="modalAli.fData.proteinas" placeholder="Proteinas (g)" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
+	            </div>	
+	            <div class="form-group col-md-3">
+	              	<label for="grasas" class="control-label minotaur-label">Grasas </label>
+	              	<input type="text" name="grasas" id="grasas" class="form-control" ng-model="modalAli.fData.grasas" placeholder="Grasas (g)" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
+	            </div>
+	            	                        		    	
+		    </div>
+		    <div class="row">
+	            <div class="form-group col-md-3">
+	              	<label for="carbohidratos" class="control-label minotaur-label">Carbohidratos </label>
+	              	<input type="text" name="carbohidratos" id="carbohidratos" class="form-control" ng-model="modalAli.fData.carbohidratos" placeholder="Carbohidratos (g)" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
+	            </div>
+	            <div class="form-group col-md-3">
+	              	<label for="gramo" class="control-label minotaur-label">Gramo </label>
+	              	<input type="text" name="gramo" id="gramo" class="form-control" ng-model="modalAli.fData.gramo" placeholder="Gramo" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
+	            </div>	
+	            <div class="form-group col-md-3">
+	              	<label for="fibra" class="control-label minotaur-label">Fibra </label>
+	              	<input type="text" name="fibra" id="fibra" class="form-control" ng-model="modalAli.fData.fibra" placeholder="Fibra" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
+	            </div>
+	            <div class="form-group col-md-3">
+	              	<label for="ceniza" class="control-label minotaur-label">Ceniza </label>
+	              	<input type="text" name="ceniza" id="ceniza" class="form-control" ng-model="modalAli.fData.ceniza" placeholder="Ceniza" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
+	            </div>		    	
+		    </div>
+		    <div class="row">
+	            <div class="form-group col-md-3">
+	              	<label for="calcio" class="control-label minotaur-label">Calcio </label>
+	              	<input type="text" name="calcio" id="calcio" class="form-control" ng-model="modalAli.fData.calcio" placeholder="Calcio" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
+	            </div>
+	            <div class="form-group col-md-3">
+	              	<label for="fosforo" class="control-label minotaur-label">Fosforo </label>
+	              	<input type="text" name="fosforo" id="fosforo" class="form-control" ng-model="modalAli.fData.fosforo" placeholder="Fosforo" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
+	            </div>	
+	            <div class="form-group col-md-3">
+	              	<label for="zinc" class="control-label minotaur-label">Zinc </label>
+	              	<input type="text" name="zinc" id="zinc" class="form-control" ng-model="modalAli.fData.zinc" placeholder="Zinc" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
+	            </div>
+	            <div class="form-group col-md-3">
+	              	<label for="hierro" class="control-label minotaur-label">Hierro </label>
+	              	<input type="text" name="hierro" id="hierro" class="form-control" ng-model="modalAli.fData.hierro" placeholder="Hierro" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
+	            </div>		    	
+		    </div>
+		</form>
+	</section>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-lightred btn-ef btn-ef-4 btn-ef-4c" ng-click="modalAli.cancel()"><i class="fa fa-arrow-left"></i> Cancel</button>
+  <button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c" ng-disabled="formAlimento.$invalid" ng-click="modalAli.aceptar()"><i class="fa fa-arrow-right"></i> Grabar</button>
+</div>

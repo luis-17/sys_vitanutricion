@@ -1,0 +1,90 @@
+<div id="pageConsulta" class="page page-ui pull-to-header page-consulta" ng-if="viewConsulta && pac.tipoVista == 'edit'"
+      ng-include="'app/pages/consultas/consulta.html'" ng-show="viewConsulta && pac.tipoVista == 'edit'"
+      ng-controller="ConsultasController as cons" ng-init="cons.initConsulta(pac.cita,'paciente', pac.callback, 'edit');" >
+</div>
+
+<div class="page page-ui pull-to-header" ng-show="viewPaciente">
+  <ol class="breadcrumb bg-white" ng-if="!pac.modoFicha">
+    <li><a ui-sref="dashboard">Inicio</a></li>
+    <li class="active">Paciente</li>
+
+  </ol>
+  <ol class="breadcrumb bg-white" ng-if="pac.modoFicha">
+    <li><a ui-sref="dashboard">Inicio</a></li>
+    <li ng-click="pac.btnRegresar();"><a>Paciente</a></li>
+    <li class="active">{{pac.mySelectionGrid[0].nombre}} {{pac.mySelectionGrid[0].apellidos}}</li>
+
+  </ol>
+  <div class="row">
+    <button type="button" class="btn btn-xs btn-warning pull-right mb-10 mr-20" ng-show="pac.modoFicha"
+            ng-if="!pac.externo" ng-click="pac.btnRegresar();"><i class="fa fa-arrow-left"></i> REGRESAR
+    </button>
+    <button type="button" class="btn btn-xs btn-warning pull-right mb-10 mr-20" ng-show="pac.modoFicha"
+            ng-if="pac.externo" ng-click="changeViewCita(true);changeViewFicha(false);"><i class="fa fa-arrow-left"></i> REGRESAR</button>
+    <button type="button" class="btn btn-xs btn-info pull-right mb-10 mr-20" ng-show="pac.modoFicha"
+            ng-if="!pac.externo" ng-click="pac.btnActualizarFicha(pac.mySelectionGrid[0]);">
+            <i class="fa fa-refresh"></i> ACTUALIZAR
+    </button>
+
+
+
+    <button type="button" class="btn btn-xs btn-success pull-right mb-10 mr-5" ng-show="pac.modoFicha"
+            ng-click="goToUrl('/app/citas');"><i class="fa fa-list-alt"></i> NUEVA CITA</button>
+
+  </div>
+
+  <!-- LISTADO -->
+  <div class="row" ng-show="!pac.modoFicha">
+    <div class="col-lg-12 col-md-12">
+      <div class="tile">
+        <!-- CABECERA -->
+        <section class="tile-header">
+          <h1 class="heading">Pacientes</h1>
+          <div class="controls">
+            <div class="btn-group" uib-dropdown>
+              <button class="btn btn-transparent" uib-dropdown-toggle><i class="fa fa-cog"></i></button>
+              <ul class="dropdown-menu dropdown-menu-custom" uib-dropdown-menu role="menu">
+                <li role="menuitem"><a href="javascript:;" minotaur-tile-minimize></a></li>
+                <li role="menuitem"><a href="javascript:;" minotaur-tile-refresh ng-click="pac.getPaginationServerSide()"></a></li>
+                <li role="menuitem"><a href="javascript:;" minotaur-tile-fullscreen></a></li>
+                <li role="menuitem"><a href="javascript:;" minotaur-tile-lightbox></a></li>
+              </ul>
+            </div>
+            <minotaur-tile-close></minotaur-tile-close>
+          </div>
+        </section>
+        <!-- PANEL PRINCIPAL -->
+        <section class="tile-body col-md-8 col-sm-12 pr-0">
+          <div>
+            <ul class="form-group demo-btns list-unstyled">
+              <li class="pull-right" style="margin-bottom: 10px;"><button type="button" class="btn btn-success" ng-click='pac.btnNuevo()'>Nuevo</button></li>
+            </ul>
+          </div>
+          <div id="grid1" ui-grid="pac.gridOptions" ui-grid-selection ui-grid-auto-resize ui-grid-pagination class="grid table-responsive clear"></div>
+        </section>
+        <!-- PANEL DE VISTA PREVIA - LATERAL DERECHO -->
+        <section class="tile-body col-md-4 col-sm-12" >
+          <div ng-include="'app/pages/paciente/paciente_vista_previa.html'"></div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FICHA DEL PACIENTE -->
+  <div class="row" ng-if="pac.modoFicha">
+    <div class="col-lg-12 col-md-12">
+      <div class="tile">
+
+        <!-- CABECERA -->
+        <section class="tile-header p-0">
+          <uib-tabset class="minotaur-tab minotaur-tab-theme mb-10" justified="true">
+            <uib-tab heading="{{item.tab}}" ng-repeat="item in pac.templates" disable="pac.modoEditar">
+              <div ng-include="item.url"></div>
+            </uib-tab>
+          </uib-tabset>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

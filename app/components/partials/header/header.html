@@ -1,0 +1,56 @@
+<div class="navbar-header">
+  <button type="button" class="header-nav-toggle collapsed" data-toggle="collapse" data-target="#header-navbar" aria-expanded="false" aria-controls="header-navbar">
+    <span class="sr-only">Toggle header</span>
+    <i class="fa fa-cog"></i>
+  </button>
+  <a class="navbar-brand" ui-sref="dashboard">
+    <img class="" src="assets/images/dinamic/logo.png" alt="Sistema para Nutricionistas" style="max-height: 56px;margin-top: -6px;">
+    <!-- <span><strong>MIN</strong>OTAUR</span> -->
+  </a>
+  <button type="button" class="navigation-toggle" id="navigation-toggle">
+    <span class="sr-only">Toggle navigation</span>
+    <i class="fa fa-bars"></i>
+  </button>
+</div>
+<div class="main-search hidden-xs">
+  <form>
+    <input type="text" class="form-control" placeholder="Buscar paciente..." ng-model="fBusqueda">
+    <button class="btn" ng-click="buscarPaciente(fBusqueda);">
+      <i class="fa fa-search"></i>
+    </button>
+  </form>
+</div>
+<div id="header-navbar" class="navbar-collapse collapse">
+  <ul class="nav navbar-nav navbar-right">
+    <li>
+      <div uib-dropdown>
+        <button id="profile" type="button" class="btn no-bg" uib-dropdown-toggle>
+          <!-- <span class="inline"> Profesional: Luis Luna </span> -->
+          <img src="assets/images/dinamic/profesionales/{{fSessionCI.nombre_foto}}" class="img-responsive img-circle hidden-xs" alt="">
+          <span class="nav-text"><i class="fa fa-user"></i> {{fSessionCI.nombre}} </span>
+        </button>
+        <div class="dropdown-menu with-arrow animated littleFadeInRight profile" uib-dropdown-menu role="menu" aria-labelledby="profile">
+          <div class="media">
+            <div class="media-left">
+              <img class="media-object img-circle" src="assets/images/dinamic/profesionales/{{fSessionCI.nombre_foto}}" alt="">
+            </div>
+            <div class="media-body">
+              <h4 class="text-sm uppercase-bold">{{fSessionCI.nombre}} {{fSessionCI.apellidos}}</h4>
+              <a href="javascript:;">{{fSessionCI.correo}}</a>
+              <ul class="list-unstyled">
+                <li><a href="javascript:;"><i class="fa fa-user"></i> {{ fSessionCI.username }} </a></li>  
+              </ul>
+            </div>
+          </div>
+          <div class="footer">
+            <button class="btn btn-theme minotaur-btn pull-right" ng-click="btnLogoutToSystem();" >
+              <i class="fa fa-power-off"></i> Cerrar Sesión 
+            </button>
+            <button class="btn btn-theme minotaur-btn" ng-click="btnChangePassword()"><i class="fa fa-key"></i> Cambiar Clave</button> 
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

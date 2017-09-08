@@ -1,0 +1,72 @@
+<!-- PANEL DE VISTA PREVIA - LATERAL DERECHO -->
+<!-- <section class="tile-body col-sm-4"> -->
+  <div class="tile profile-widget">
+
+    <!-- tile widget -->
+    <section class="tile-widget bg-info" style="min-height: 145px;">
+      <img class="img-circle profile-avatar" src="assets/images/sin-imagen.png" alt="" ng-if="pac.mySelectionGrid.length < 1">
+      <img class="img-circle profile-avatar" src="assets/images/dinamic/pacientes/{{pac.mySelectionGrid[0].nombre_foto}}" alt="" ng-if="pac.mySelectionGrid.length >= 1">
+      <div class="row mt-30">
+        <div class="col-md-12 text-center">
+          <h4 class="text-uppercase m-0">{{pac.mySelectionGrid[0].nombre}}</h4>
+          <small class="uppercase-bold text-strong text-transparent-black">{{pac.mySelectionGrid[0].apellidos}}</small>
+        </div>
+        <div class="col-md-12 text-center" ng-if = "pac.mySelectionGrid.length == 1">
+          <small class="text-transparent-black">Ultima visita : {{pac.mySelectionGrid[0].ultima_visita}}</small>
+        </div>
+      </div>
+      <div class="divider mt-10"></div>
+    </section>
+    <!-- /tile widget -->
+
+    <!-- tile body -->
+    <section class="tile-body bg-info" style="min-height: 166px;">
+      <dl class="dl-horizontal" ng-if="pac.mySelectionGrid.length == 1 && pac.previo0">
+        <dt style="width: 80px; padding: 3px 0;">Edad: </dt>
+        <dd style="margin-left: 90px; padding: 3px 0;">{{pac.mySelectionGrid[0].edad}} años</dd>
+        <!-- <dt style="width: 80px; padding: 3px 0;">Sexo: </dt>
+        <dd style="margin-left: 90px; padding: 3px 0;">{{pac.mySelectionGrid[0].sexo_desc}}</dd> -->
+        <dt style="width: 80px; padding: 3px 0;">Cargo Lab.: </dt>
+        <dd style="margin-left: 90px; padding: 3px 0;">{{pac.mySelectionGrid[0].cargo_laboral}}</dd>
+        <dt style="width: 80px; padding: 3px 0;">Celular: </dt>
+        <dd style="margin-left: 90px; padding: 3px 0;">{{pac.mySelectionGrid[0].celular}}</dd>
+        <dt style="width: 80px; padding: 3px 0;">Nacimiento: </dt>
+        <dd style="margin-left: 90px; padding: 3px 0;">{{pac.mySelectionGrid[0].fecha_nacimiento_st}}</dd>
+      </dl>
+      <dl class="dl-horizontal" ng-if="pac.mySelectionGrid.length == 1 && pac.previo1 && pac.mySelectionGrid[0].peso">
+        <dt style="width: 80px; padding: 3px 0;">Peso: </dt>
+        <dd style="margin-left: 90px; padding: 3px 0;">{{pac.mySelectionGrid[0].peso}} Kg.</dd>
+        <dt style="width: 80px; padding: 3px 0;">IMC: </dt>
+        <dd style="margin-left: 90px; padding: 3px 0;">{{pac.mySelectionGrid[0].imc}}</dd>
+        <dt style="width: 80px; padding: 3px 0;">Objetivo: </dt>
+        <dd style="margin-left: 90px; padding: 3px 0;">{{pac.mySelectionGrid[0].objetivo}} Kg.</dd>
+      </dl>
+      <dl class="dl-horizontal" ng-if="pac.mySelectionGrid.length == 1 && pac.previo2">
+        <!-- <dd style="margin-left: 25px; padding: 3px 0;" ng-repeat="item in pac.listaUltAntecedentes">{{item.antecedente}}</dd> -->
+         <ul class="list-type caret-right">
+          <li ng-repeat="item in pac.listaUltAntecedentes">{{item.antecedente}}</li>
+        </ul>
+
+      </dl>
+      <div class="f-24 text-center" ng-if="pac.mySelectionGrid.length < 1">Seleccione un paciente</div>
+      <div class="f-24 text-center mt-20" ng-if="pac.mySelectionGrid.length == 1 && !pac.mySelectionGrid[0].peso && pac.previo1">No se han registrado consultas</div>
+      <div class="f-24 text-center" ng-if="pac.mySelectionGrid.length == 1 && pac.listaUltAntecedentes.length < 1 && pac.previo2">No se han registrado antecedentes</div>
+    </section>
+    <!-- /tile body -->
+
+    <!-- tile footer -->
+    <section class="tile-footer p-0">
+      <uib-tabset class="minotaur-tab minotaur-tab-info">
+        <uib-tab index="0" heading="Datos Gen." ng-click="pac.verPrevio(0)">
+        </uib-tab>
+        <uib-tab index="1" heading="Evolución" ng-click="pac.verPrevio(1)">
+        </uib-tab>
+        <uib-tab index="2" heading="Ult.Antec." ng-click="pac.verPrevio(2)">
+
+        </uib-tab>
+      </uib-tabset>
+    </section>
+    <!-- /tile footer -->
+
+  </div>
+<!-- </section> -->

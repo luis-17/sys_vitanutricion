@@ -1,0 +1,49 @@
+<form class="form-horizontal" role="form">
+	<div class="tile col-sm-12">
+		<div class="row">
+			<div class="col-lg-8 col-md-12">
+				<div class="row">
+	    			<h4 class="custom-font text-info f-16 col-sm-12">Evolución</h4>
+	    			<div class="btn-toolbar mb-10 col-sm-12" role="toolbar">
+		                <div class="btn-group btn-group-rounded-20">
+		                  <button type="button" class="btn btn-default" ng-model="pac.evoRadio" uib-btn-radio="'Peso'">Peso</button>
+		                  <button type="button" class="btn btn-default" ng-model="pac.evoRadio" uib-btn-radio="'IMC'">IMC</button>
+		                  <button type="button" class="btn btn-default" ng-model="pac.evoRadio" uib-btn-radio="'Otro'">Otro</button>
+		                </div>
+		            </div>
+				  	<div  class="col-sm-12" ng-show="pac.sinGrafico"
+				  		style="background: url('assets/images/evolucion_des.jpg') no-repeat center;
+						min-height: 350px;
+						text-align: center;
+						opacity: 0.8;
+
+						">
+						<span style="
+						position: relative;
+						top: 70px;
+						font-size: 20px;
+						background-color: rgb(0, 0, 0);
+						color: white;
+						padding: 6px 12px;">Para ver el gráfico, debes de generar al menos 2 consultas para poder comparar</span>
+				  	</div>
+
+					<div class=" col-sm-12" ng-if="pac.evoRadio == 'Peso' && !pac.sinGrafico">
+					  	<hc-chart ng-if="pac.chartOptions1" id="chartOptions1" style="width: 100%;" options="pac.chartOptions1"> GRAFICO XD </hc-chart>
+					</div>
+					<div class=" col-sm-12" ng-if="pac.evoRadio == 'IMC' && !pac.sinGrafico">
+					  	<hc-chart ng-if="pac.chartOptions2" id="chartOptions2" style="width: 100%;" options="pac.chartOptions2"> GRAFICO XD </hc-chart>
+					</div>
+					<div class=" col-sm-12" ng-if="pac.evoRadio == 'Otro' && !pac.sinGrafico">
+					  	<hc-chart ng-if="pac.chartOptions3" id="chartOptions3" style="width: 100%;" options="pac.chartOptions3"> GRAFICO XD </hc-chart>
+					</div>
+				</div>
+
+			</div>
+			<!-- PANEL DE VISTA PREVIA - LATERAL DERECHO -->
+		        <section class="tile-body col-lg-4 col-md-12" >
+		          <div ng-include="'app/pages/paciente/paciente_vista_previa.html'"></div>
+		        </section>
+		</div>
+
+    </div>
+</form>

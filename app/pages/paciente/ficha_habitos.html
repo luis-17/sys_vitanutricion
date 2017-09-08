@@ -1,0 +1,107 @@
+<form class="form-horizontal" role="form">
+	<div class="tile-body row">
+		<div class="col-sm-12">
+			<button class="pull-right btn btn-input-sm btn-warning mb-0" type="button" ng-if="!pac.modoEditar" ng-click="pac.modoEditar=true">Editar</button>
+				<button class="pull-right btn btn-success btn-ef btn-ef-3 btn-ef-3c mb-0" ng-if="pac.modoEditar" ng-click="pac.btnAceptarTab4()"><i class="fa fa-arrow-right"></i> Guardar</button>
+		      	<button class="pull-right btn btn-lightred btn-ef btn-ef-4 btn-ef-4c mr-10 mb-0" ng-if="pac.modoEditar" ng-click="pac.btnCancelarTab4()" style="padding: 6px 25px"><i class="fa fa-arrow-left"></i> Cancelar</button>
+		</div>
+		<div class="col-md-5 col-sm-12">
+			<div class="row">
+    			<h4 class="text-info f-16 col-sm-12">Hábitos Alimentarios</h4>
+			</div>
+    		<div class="form-group row" ng-repeat="val in pac.ficha.listaHabitosAlim">
+		        <label class="col-sm-6 control-label minotaur-label mb-10" style="text-align: left">{{val.descripcion_tu}} </label>
+
+		        <div  ng-if="!pac.modoEditar">
+		        	<label>Hora: </label>
+		        	<span>{{val.hora}} : {{val.minuto}} {{val.periodo}}</span>
+		        </div>
+		        <div  ng-if="pac.modoEditar">
+			        <select class="form-control input-sm cbo-sm" ng-model="pac.ficha.listaHabitosAlim[$index].hora" ng-options="item.id as item.descripcion for item in pac.listaHoras" > </select> :
+			        <select class="form-control input-sm cbo-sm" ng-model="pac.ficha.listaHabitosAlim[$index].minuto" ng-options="item.id as item.descripcion for item in pac.listaMinutos" > </select>
+			        <select class="form-control input-sm cbo-sm" ng-model="pac.ficha.listaHabitosAlim[$index].periodo" ng-options="item.id as item.descripcion for item in pac.listaPeriodos" > </select>
+		        </div>
+		        <div class="col-sm-12 pr-5">
+		          <textarea class="form-control input-sm" ng-model="pac.ficha.listaHabitosAlim[$index].texto_alimentos" ng-disabled="!pac.modoEditar" id="val.descripcion_tu"></textarea>
+		        </div>
+    		</div>
+		</div>
+		<div class="col-md-7 col-sm-12">
+			<div class="row">
+				<h4 class="text-info f-16 col-sm-6">Hábitos Generales</h4>
+			</div>
+			<h5>Actividad Física:</h5>
+			<div class="form-group">
+		        <label class="col-sm-4 control-label minotaur-label">Actividad Física : </label>
+		        <div class="col-sm-8">
+		          <p ng-if="!pac.modoEditar" class="form-control underline-input text-center">{{pac.ficha.habitos.actividad_fisica.descripcion}} </p>
+		          <select class="form-control input-sm" ng-if="pac.modoEditar" ng-model="pac.ficha.habitos.actividad_fisica.id" ng-options="item.id as item.descripcion for item in pac.actividadFisica" required > </select>
+		        </div>
+		    </div>
+		    <div class="form-group">
+		        <label class="col-sm-4 control-label minotaur-label">Frecuencia : </label>
+		        <div class="col-sm-8">
+		          <p ng-if="!pac.modoEditar" class="form-control underline-input text-center">{{pac.ficha.habitos.frecuencia.descripcion}} </p>
+		          <select class="form-control input-sm" ng-if="pac.modoEditar" ng-model="pac.ficha.habitos.frecuencia.id" ng-options="item.id as item.descripcion for item in pac.frecuencia" required > </select>
+		        </div>
+		    </div>
+		    <div class="form-group">
+		        <label for="detalle_actividad" class="col-sm-4 control-label minotaur-label">Detalles de Actividad física : </label>
+		        <div class="col-sm-8">
+		          <textarea class="form-control input-sm" ng-model="pac.ficha.habitos.detalle_act_fisica" ng-disabled="!pac.modoEditar" id="detalle_actividad"></textarea>
+		        </div>
+		    </div>
+			<h5>Hábitos de Consumo:</h5>
+			<div class="form-group">
+		        <label class="col-sm-4 control-label minotaur-label">Consumo de Agua : </label>
+		        <div class="col-sm-8">
+		          	<p ng-if="!pac.modoEditar" class="form-control underline-input text-center">{{pac.ficha.habitos.consumo_agua.descripcion}} </p>
+		          	<div class="btn-group" ng-if="pac.modoEditar" >
+	                  <label class="btn btn-sm btn-default" ng-repeat="item in pac.consumoAgua" ng-model="pac.ficha.habitos.consumo_agua.id" uib-btn-radio="'{{item.id}}'">{{item.descripcion}}</label>
+	                </div>
+		        </div>
+		    </div>
+		    <div class="form-group">
+		        <label class="col-sm-4 control-label minotaur-label">Consumo de Gaseosa : </label>
+		        <div class="col-sm-8">
+		          	<p ng-if="!pac.modoEditar" class="form-control underline-input text-center">{{pac.ficha.habitos.consumo_gaseosa.descripcion}} </p>
+		          	<div class="btn-group" ng-if="pac.modoEditar" >
+	                  <label class="btn btn-sm btn-default" ng-repeat="item in pac.consumos" ng-model="pac.ficha.habitos.consumo_gaseosa.id" uib-btn-radio="'{{item.id}}'">{{item.descripcion}}</label>
+	                </div>
+		        </div>
+		    </div>
+		    <div class="form-group">
+		        <label class="col-sm-4 control-label minotaur-label">Consumo de Alcohol : </label>
+		        <div class="col-sm-8">
+		          	<p ng-if="!pac.modoEditar" class="form-control underline-input text-center">{{pac.ficha.habitos.consumo_alcohol.descripcion}} </p>
+		          	<div class="btn-group" ng-if="pac.modoEditar" >
+	                  <label class="btn btn-sm btn-default" ng-repeat="item in pac.consumos" ng-model="pac.ficha.habitos.consumo_alcohol.id" uib-btn-radio="'{{item.id}}'">{{item.descripcion}}</label>
+	                </div>
+		        </div>
+		    </div>
+		    <div class="form-group">
+		        <label class="col-sm-4 control-label minotaur-label">Consumo de Tabaco : </label>
+		        <div class="col-sm-8">
+		          <p ng-if="!pac.modoEditar" class="form-control underline-input text-center">{{pac.ficha.habitos.consumo_tabaco.descripcion}} </p>
+		          	<div class="btn-group" ng-if="pac.modoEditar" >
+	                  <label class="btn btn-sm btn-default" ng-repeat="item in pac.consumos" ng-model="pac.ficha.habitos.consumo_tabaco.id" uib-btn-radio="'{{item.id}}'">{{item.descripcion}}</label>
+	                </div>
+		        </div>
+		    </div>
+		    <div class="form-group">
+		        <label class="col-sm-4 control-label minotaur-label">Tiempo de sueño : </label>
+		        <div class="col-sm-8">
+		          <p ng-if="!pac.modoEditar" class="form-control underline-input text-center">{{pac.ficha.habitos.tiempo_suenio.descripcion}} </p>
+		          	<div class="btn-group" ng-if="pac.modoEditar" >
+	                  <label class="btn btn-sm btn-default" ng-repeat="item in pac.tiempoSuenio" ng-model="pac.ficha.habitos.tiempo_suenio.id" uib-btn-radio="'{{item.id}}'">{{item.descripcion}}</label>
+	                </div>
+		        </div>
+		    </div>
+		</div>
+		<div class="col-sm-12">
+    		<h4 class="text-info f-16">Notas Generales</h4>
+    		<textarea class="form-control input-sm" ng-model="pac.ficha.habitos.notas_generales" ng-disabled="!pac.modoEditar"></textarea>
+		</div>
+
+    </div>
+</form>

@@ -1,0 +1,47 @@
+<div class="page page-ui pull-to-header">
+  <ol class="breadcrumb bg-white">
+    <li><a ui-sref="dashboard">Dashboard</a></li>
+    <li class="active">Empresa</li>
+  </ol>
+  <!-- row -->
+  <div class="row">
+    <!-- col -->
+    <div class="col-md-12">
+      <!-- tile -->
+      <div class="tile">
+        <!-- tile header -->
+        <section class="tile-header">
+          <h1 class="heading">Empresa</h1>
+          <div class="controls">
+            <div class="btn-group" uib-dropdown>
+              <button class="btn btn-transparent" uib-dropdown-toggle><i class="fa fa-cog"></i></button>
+              <ul class="dropdown-menu dropdown-menu-custom" uib-dropdown-menu role="menu">
+                <li role="menuitem"><a href="javascript:;" minotaur-tile-minimize></a></li>
+                <li role="menuitem"><a href="javascript:;" minotaur-tile-refresh></a></li>
+                <li role="menuitem"><a href="javascript:;" minotaur-tile-fullscreen></a></li>
+                <li role="menuitem"><a href="javascript:;" minotaur-tile-lightbox></a></li>
+              </ul>
+            </div>
+            <minotaur-tile-close></minotaur-tile-close>
+          </div>
+        </section>
+        <!-- /tile header -->
+        <!-- tile body -->
+        <!-- PANEL PRINCIPAL -->
+        <section class="tile-body col-sm-12 pr-md pl-md">
+          <div>
+            <ul class="form-group demo-btns list-unstyled">
+              <li class="pull-right" style="margin-bottom: 10px;"><button type="button" class="btn btn-success" ng-click='emp.btnNuevo()'>Nuevo</button></li>
+            </ul>
+          </div>
+          <div id="grid1" ui-grid="emp.gridOptions" ui-grid-selection ui-grid-auto-resize ui-grid-pagination class="grid table-responsive clear"></div>
+        </section>  
+              
+        <!-- /tile body -->
+      </div>
+      <!-- /tile -->
+    </div>
+    <!-- /col -->
+  </div>
+  <!-- /row --> 
+</div>

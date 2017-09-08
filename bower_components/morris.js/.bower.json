@@ -1,0 +1,27 @@
+{
+  "name": "morris.js",
+  "main": [
+    "./morris.js",
+    "./morris.css"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.7.0",
+    "raphael": ">= 2.0"
+  },
+  "devDependencies": {
+    "mocha": "~1.17.1",
+    "chai": "~1.9.0",
+    "chai-jquery": "~1.2.1",
+    "sinon": "http://sinonjs.org/releases/sinon-1.8.1.js",
+    "sinon-chai": "~2.5.0"
+  },
+  "_cacheHeaders": {
+    "ETag": "\"c200fe477f9ae15bfa636197c99b3efd46b8a2d5\"",
+    "Content-Type": "application/zip",
+    "Content-Disposition": "attachment; filename=morris.js-master.zip"
+  },
+  "_release": "e-tag:c200fe477",
+  "_source": "https://github.com/sprattek/morris.js/archive/master.zip",
+  "_target": "*",
+  "_originalSource": "https://github.com/sprattek/morris.js/archive/master.zip"
+}

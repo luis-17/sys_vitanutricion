@@ -1,0 +1,141 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{mp.modalTitle}}</h4>
+</div>
+<div class="modal-body">
+	<section class="tile-body p-0">
+		<form name="formCliente" role="form" novalidate class="form-validation">
+		    <div class="row">
+		    	<div class="form-group col-md-9">
+					<div class="row">
+
+			            <div class="form-group col-md-4">
+			              <label for="nombre" class="control-label minotaur-label">Nombres <small class="text-red">(*)</small> </label>
+			              <input type="text" name="nombre" id="nombre" class="form-control" ng-model="mp.fData.nombre" placeholder="Registre nombre del paciente" required>
+			              <div ng-messages="formCliente.name.$error" ng-if="formCliente.nombre.$dirty" role="alert" class="help-block text-red">
+			                <div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+			              </div>
+			            </div>
+
+			            <div class="form-group col-md-8">
+			              <label for="apellidos" class="control-label minotaur-label">Apellidos <small class="text-red">(*)</small> </label>
+			              <input type="text" name="apellidos" id="apellidos" class="form-control" ng-model="mp.fData.apellidos" placeholder="Registre apellidos del paciente" required>
+			              <div ng-messages="formCliente.apellidos.$error" ng-if="formCliente.apellidos.$dirty" role="alert" class="help-block text-red">
+			                <div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+			              </div>
+			            </div>
+			        </div>
+			        <!--  -->
+
+					<div class="row">
+			            <div class="form-group col-md-4">
+			              	<label for="fecha" class="control-label minotaur-label">Fecha Nacimiento <small class="text-red">(*)</small> </label>
+			              	 <input type="text" class="form-control  text-center" id="fecha_nac" ng-model="mp.fData.fecha_nacimiento" 
+			              	 	input-mask mask-options="{alias: 'dd-mm-yyyy'}"  placeholder="dd-mm-yyyy"> 
+			            </div>
+			            <div class="form-group col-md-4">
+			              <label for="sexo" class="control-label minotaur-label">Sexo <small class="text-red">(*)</small> </label>
+			              <select class="form-control" ng-model="mp.fData.sexo" ng-options="item.id as item.descripcion for item in mp.listaSexos" required > </select>
+
+			              <div ng-messages="formCliente.sexo.$error" ng-if="formCliente.sexo.$dirty" role="alert" class="help-block text-red">
+			                <div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+			              </div>
+			            </div>
+			            <div class="form-group col-md-4">
+			              	<label for="estatura" class="control-label minotaur-label">Estatura <small class="text-red">(*)</small> </label>
+			               	<div class="input-group mb-10">
+			                  <input type="number" min="100" max="290" step="1" class="form-control" name="estatura" id="estatura" ng-model="mp.fData.estatura" placeholder="Registre estatura del paciente" required>
+			                  <span class="input-group-addon">cm</span>
+			                </div>
+
+			              <div ng-messages="formCliente.estatura.$error" ng-if="formCliente.estatura.$dirty" role="alert" class="help-block text-red">
+			                <div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+			              </div>
+			            </div>
+			        </div>
+					<div class="row">
+						<div class="form-group col-md-4">
+					        <label for="motivo" class="control-label minotaur-label">Clasificación <small class="text-red">(*)</small> </label>
+					        <select class="form-control" ng-model="mp.fData.idmotivoconsulta" ng-options="item.id as item.descripcion for item in mp.listaMotivos" required > </select>
+
+					        <div ng-messages="formCliente.motivo.$error" ng-if="formCliente.motivo.$dirty" role="alert" class="help-block text-red">
+					        	<div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+					    	</div>
+						</div>
+			            <div class="form-group col-md-4">
+			              	<label for="email" class="control-label minotaur-label">Email </label>
+			              	<input type="email" name="email" id="email" class="form-control" ng-model="mp.fData.email" placeholder="micorreo@dominio.com" >
+
+			            </div>
+			            <div class="form-group col-md-4">
+			              	<label for="celular" class="control-label minotaur-label">Celular <small class="text-red">(*)</small> </label>
+			              	<input type="text" name="celular" id="celular" class="form-control" ng-model="mp.fData.celular" placeholder="Registra celular" ng-pattern="/([0-9]{9})$/" required>
+			              	<div ng-messages="formCliente.celular.$error" ng-if="formCliente.celular.$dirty" role="alert" class="help-block text-red">
+			                	<div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+			              	</div>
+			            </div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-4">
+			              <label for="tipocliente" class="control-label minotaur-label">Tipo de Paciente <small class="text-red">(*)</small> </label>
+			              <select class="form-control" ng-model="mp.fData.idtipocliente" ng-options="item.id as item.descripcion for item in mp.listaTiposClientes" 
+			              	ng-change="mp.cambiaTipoCliente();" required > </select>
+
+			              <div ng-messages="formCliente.tipocliente.$error" ng-if="formCliente.tipocliente.$dirty" role="alert" class="help-block text-red">
+			                <div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+			              </div>
+			            </div>
+
+			            <div class="form-group col-md-4">
+			              <label for="empresa" class="control-label minotaur-label">Empresa <small class="text-red" ng-show="mp.corp">(*)</small> </label>
+			              <select class="form-control" ng-model="mp.fData.idempresa" ng-options="item.id as item.descripcion for item in mp.listaEmpresas" ng-disabled="!mp.corp" ng-required="mp.corp"> </select>
+
+			              <div ng-messages="formCliente.empresa.$error" ng-if="formCliente.empresa.$dirty" role="alert" class="help-block text-red">
+			                <div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+			              </div>
+			            </div>
+			          	<div class="form-group col-md-4">
+				            <label for="cargo" class="control-label minotaur-label">Cargo Laboral </label>
+				            <input type="text" name="cargo" id="cargo" class="form-control" ng-model="mp.fData.cargo_laboral" placeholder="Registre el cargo laboral (opcional)">
+			          	</div>
+			        </div>
+		    	</div>
+		    	<div class="form-group col-md-3">
+					<label for="nombre" class="control-label minotaur-label">Foto </label>
+					<div class="text-center" ng-if="!mp.fotoCrop">
+				        <img ng-src="assets/images/sin-imagen.png" style="width: 100%">
+				    </div>
+			        <div class="row" ng-show="mp.fotoCrop">
+				        <div class="col-md-12">
+						    <div class="p-10 bg-white b-a b-solid" style="height:180px">
+
+				              <img-crop
+				                image="mp.fData.myImage"
+				                result-image="mp.fData.myCroppedImage"
+				                result-image-size="160"
+				                area-type="{{mp.cropType}}"
+				              ></img-crop>
+				            </div>
+				        </div>
+			            <div class="col-md-12" ng-show="false">
+				            <div class="p-15 bg-white b-a b-solid inline-block">
+				              <img ng-src="{{mp.fData.myCroppedImage}}" />
+				            </div>
+			          	</div>
+			        </div>
+					<input type="file" class="filestyle" filestyle="{
+			            buttonText: 'Select image',
+			            iconName: 'fa fa-file-image-o'
+			          }" id="fileInput" ng-click="mp.cargarImagen();" >
+
+		    	</div>
+
+
+		    </div>
+
+		</form>
+	</section>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-lightred btn-ef btn-ef-4 btn-ef-4c" ng-click="mp.cancel()"><i class="fa fa-arrow-left"></i> Cancelar</button>
+  <button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c" ng-disabled="formCliente.$invalid" ng-click="mp.aceptar()"><i class="fa fa-arrow-right"></i> Guardar</button>
+</div>

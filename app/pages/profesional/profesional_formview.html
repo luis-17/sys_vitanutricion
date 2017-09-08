@@ -1,0 +1,200 @@
+<style type="text/css">
+	.splash .modal-content {
+		overflow: visible !important;
+	}
+</style>
+<script type="text/ng-template" id="user.html">
+	<div class="modal-header">
+		<h4 class="modal-title">{{us.modalTitle}}</h4>
+	</div>
+	<div class="modal-body">
+		<section class="tile-body p-0">
+			<form name="formUsuario" role="form" novalidate class="form-validation">
+			    <div class="row">
+			    	<div class="form-group col-md-12">
+						<div class="row">
+
+				            <div class="form-group col-md-6">
+				              <label for="username" class="control-label minotaur-label">UserName <small class="text-red">(*)</small> </label>
+				              <input type="text" name="username" id="username" class="form-control" ng-model="us.fData.username" placeholder="Registre username" required>
+				              <div ng-messages="formUsuario.username.$error" ng-if="formUsuario.username.$dirty" role="alert" class="help-block text-red">
+				                <div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+				              </div>
+				            </div>
+							<div class="form-group col-md-6">
+				                <label for="grupo" class="control-label minotaur-label"> Grupo <small class="text-red">(*)</small> </label>
+				                <select class="form-control" name="grupo" id="grupo" ng-model="us.fData.idgrupo" ng-options="item as item.descripcion for item in us.listaGrupo" required > 
+				                </select>
+				                <div ng-messages="formUsuario.grupo.$error" ng-if="formUsuario.grupo.$dirty" role="alert" class="help-block text-red">
+				                 	<div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+				                </div>
+			        		</div>
+				        </div>
+				        <!--  -->
+						<div class="row" ng-if="!us.modoEdit">
+				            <div class="form-group col-md-6">
+				              	<label for="pass" class="control-label minotaur-label">Ingrese la contraseña <small class="text-red">(*)</small></label>
+				              	<input type="password" name="pass" id="pass" class="form-control" ng-model="us.fData.pass" placeholder="Registre contraseña" >
+				              	<div ng-messages="formUsuario.pass.$error" ng-if="formUsuario.pass.$dirty" role="alert" class="help-block text-red">
+				                	<div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+				              	</div>
+				            </div>
+				            <div class="form-group col-md-6">
+				              	<label for="pass2" class="control-label minotaur-label">Repita la contraseña <small class="text-red">(*)</small></label>
+				              	<input type="password" name="pass2" id="pass2" class="form-control" ng-model="us.fData.pass2" placeholder="Repita contraseña" required >
+				              	<div ng-messages="formUsuario.pass2.$error" ng-if="formUsuario.pass2.$dirty" role="alert" class="help-block text-red">
+				                	<div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+				              	</div>
+				            </div>
+			    	</div>
+
+			    </div>
+
+			</form>
+		</section>		
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-lightred btn-ef btn-ef-4 btn-ef-4c" ng-click="us.cancel()"><i class="fa fa-arrow-left"></i> Cancelar</button>
+		<button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c" ng-disabled="formUsuario.$invalid" ng-click="us.aceptar()"><i class="fa fa-arrow-right"></i> Guardar</button>		
+	</div>
+</script>
+<div class="modal-header">
+  <h4 class="modal-title">{{mp.modalTitle}}</h4>
+</div>
+<div class="modal-body">
+	<section class="tile-body p-0">
+		<form name="formProfesional" role="form" novalidate class="form-validation">
+		    <div class="row">
+		    	<div class="form-group col-md-9">
+					<div class="row"> 
+			            <div class="form-group col-md-6">
+			              <label for="nombre" class="control-label minotaur-label">Nombres <small class="text-red">(*)</small> </label>
+			              <input type="text" name="nombre" id="nombre" class="form-control" ng-model="mp.fData.nombre" placeholder="Registre nombres" required>
+			              <div ng-messages="formProfesional.nombre.$error" ng-if="formProfesional.nombre.$dirty" role="alert" class="help-block text-red">
+			                <div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+			              </div>
+			            </div>
+
+			            <div class="form-group col-md-6">
+			              <label for="apellidos" class="control-label minotaur-label">Apellidos <small class="text-red">(*)</small> </label>
+			              <input type="text" name="apellidos" id="apellidos" class="form-control" ng-model="mp.fData.apellidos" placeholder="Registre Apellidos" required>
+			              <div ng-messages="formProfesional.apellidos.$error" ng-if="formProfesional.apellidos.$dirty" role="alert" class="help-block text-red">
+			                <div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+			              </div>
+			            </div>
+			        </div>
+			        <!--  -->
+					<div class="row">
+			            <div class="form-group col-md-6">
+			              	<label for="fechanacimiento" class="control-label minotaur-label">Fecha Nacimiento <small class="text-red">(*)</small></label>
+			              	<input type="text" class="form-control  text-center" id="fecha_nac" ng-model="mp.fData.fecha_nacimiento" 
+			              		input-mask mask-options="{alias: 'dd-mm-yyyy'}" placeholder="dd-mm-yyyy" ng-pattern="pac.pFecha" > 
+			            </div>
+			            <div class="form-group col-md-6">
+			              	<label for="correo" class="control-label minotaur-label">Correo </label>
+			              	<input type="email" name="correo" id="correo" class="form-control" ng-model="mp.fData.correo" placeholder="Registra correo" >
+			              	<div ng-messages="formProfesional.correo.$error" ng-if="formProfesional.correo.$dirty" role="alert" class="help-block text-red">
+			                	<div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+			              	</div>
+			            </div> 
+					</div>
+					<div class="row">
+			            <div class="form-group col-md-6">
+			              	<label for="numcolegiatura" class="control-label minotaur-label">Numero Colegiatura </label>
+			              	<input type="text" name="numcolegiatura" id="numcolegiatura" class="form-control" ng-model="mp.fData.num_colegiatura" placeholder="Registra numero colegiatura" >
+			              	<div ng-messages="formProfesional.numcolegiatura.$error" ng-if="formProfesional.numcolegiatura.$dirty" role="alert" class="help-block text-red">
+			                	<div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+			              	</div>
+			            </div>	
+						<div class="form-group col-md-6" style="display:none;">
+			                <label for="especialidad" class="control-label minotaur-label"> Especialidad  </label>
+			                <select class="form-control" id="especialidad" ng-model="mp.fData.especialidad" ng-options="item as item.descripcion for item in mp.listaEspecialidades" ng-disabled="true" > 
+			                </select>
+			                <div ng-messages="formProfesional.especialidad.$error" ng-if="formProfesional.especialidad.$dirty" role="alert" class="help-block text-red">
+			                 	<div ng-messages-include="app/components/templates/messages_tmpl.html"></div>
+			                </div>
+		        		</div>			            						
+					</div>
+					<div class="row">
+			            <div class="form-group col-md-6">
+			              	<label for="usuario" class="control-label minotaur-label">Usuario <small class="text-red">(*)</small> </label>
+			              	<div class="input-group">
+			                  <!--<input type="text" class="form-control" ng-model="mp.fData.usuario" placeholder="usuario" required />-->
+			                  <input type="text" ng-model="mp.fData.usuario" class="form-control " autocomplete="off" ng-disabled="true"
+                             	  placeholder="Digite el usuario ..." 
+                                  typeahead-loading="loadingLocations" 
+                                  uib-typeahead="item as item.username for item in mp.getUsuarioAutocomplete($viewValue)" 
+                                  typeahead-min-length="2" 
+                                  typeahead-on-select="mp.getSelectedUsuario($item, $model, $label)"
+                                  ng-change="mp.fData.idusuario = null;" 
+                                  ng-if="mp.type != 'edit'" required/>
+			                  	<span class="input-group-btn">
+			                      	<button type="button" class="btn btn-default" ng-if="!mp.modoEdicion" ng-click="mp.user()"><i class="glyphicon glyphicon-user"></i></button>
+			                     	<button type="button" class="btn btn-default" ng-if="mp.modoEdicion" ng-click="mp.Edituser()"><i class="glyphicon glyphicon-pencil"></i></button>
+			                    </span>			                    
+			                </div>
+			            </div>			            						
+					</div>
+		    	</div>
+
+		    	<div class="form-group col-md-3" ng-if="!mp.modoEdicion">
+					<label for="nombre" class="control-label minotaur-label">Foto </label>					
+					<!-- <input type="file" name="file" file-model="mp.fData.fotoPaciente" /> -->
+			        <div class="row">
+				        <div class="col-md-12">
+						    <div class="p-10 bg-white b-a b-solid" style="height:180px">
+				              <img-crop
+				                image="mp.fData.myImage"
+				                result-image="mp.fData.myCroppedImage"
+				                result-image-size="160"
+				                area-type="{{mp.cropType}}"
+				              ></img-crop>
+				            </div>
+				        </div>
+			            <div class="col-md-12" ng-show="false">
+				            <div class="p-15 bg-white b-a b-solid inline-block">
+				              <img ng-src="{{mp.fData.myCroppedImage}}" />
+				            </div>
+			          	</div>
+			        </div>
+					<input type="file" class="filestyle" data-button-text="Cargar Foto" data-button-name="btn-primary" data-icon-name="glyphicon glyphicon-inbox" data-size="sm" data-button-before="true" data-placeholder="sin foto" id="fileInput" ng-click="mp.cargarImagen();">
+		    	</div>	
+
+			    <div class="form-group col-md-3" ng-if="mp.modoEdicion">
+			      	<h4 class="text-info f-14 col-sm-12">Foto</h4>
+				    <div class="text-center" ng-if="!mp.fotoCrop">
+				        <img ng-src="assets/images/dinamic/profesionales/{{mp.fData.nombre_foto}}" ng-click="mp.cargarImagen();" style="width: 100%">
+				    </div>
+				    <div class="row" ng-show="mp.fotoCrop">
+				        <div class="col-md-12">
+				          	<div class="p-10 bg-white b-a b-solid" style="height:180px">
+				            	<img-crop
+				              	image="mp.image.originalImage"
+				              	result-image="mp.image.croppedImage"
+				              	result-image-size="160"
+				              	area-type="{{mp.cropType}}"
+				            	></img-crop>
+				          	</div>
+				        </div>
+				        <div class="col-md-12" ng-show="false">
+				          	<div class="p-15 bg-white b-a b-solid inline-block">
+				            	<img ng-src="{{mp.image.croppedImage}}" />
+				          	</div>
+				        </div>
+				    </div>
+			      	<input type="file" class="filestyle" data-button-text="Cambiar Foto" data-button-name="btn-primary" data-icon-name="glyphicon glyphicon-inbox" data-size="sm" data-button-before="true" placeholder="{{mp.fData.nombre_foto}}" id="fileInput2" ng-click="mp.cargarImagen();" >
+
+			      	<div class="text-center mt-10" ng-show="mp.fotoCrop" >
+			        	<button class="btn btn-sm btn-danger" ng-click="mp.cancelarFoto();">Cancelar</button>
+			        	<button class="btn btn-sm btn-success" ng-click="mp.subirFoto();">Guardar Foto</button>
+			      	</div>
+			    </div>
+		    </div>
+
+		</form>
+	</section>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-lightred btn-ef btn-ef-4 btn-ef-4c" ng-click="mp.cancel()"><i class="fa fa-arrow-left"></i> Cancelar</button>
+  <button class="btn btn-success btn-ef btn-ef-3 btn-ef-3c" ng-disabled="formProfesional.$invalid" ng-click="mp.aceptar()"><i class="fa fa-arrow-right"></i> Guardar</button>
+</div>
